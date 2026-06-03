@@ -53,49 +53,13 @@ section { scroll-margin-top: 24px; }
   border-right: 1px solid var(--line);
 }
 
-.nav {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 24px;
-  align-items: center;
-  padding: 28px clamp(20px, 4vw, 58px);
-  border-bottom: 1px solid var(--line);
-}
-
-.brand {
-  color: var(--white);
-  font-family: "Outfit", sans-serif;
-  font-size: clamp(20px, 2.2vw, 32px);
-  letter-spacing: .24em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.nav-links {
-  display: flex;
-  gap: clamp(18px, 3vw, 48px);
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-}
-
-.nav-links a {
-  transition: color .2s;
-}
-
-.nav-links a:hover {
-  color: var(--white);
-}
-
 .section {
   padding: clamp(72px, 9vw, 132px) clamp(20px, 4vw, 58px);
   border-bottom: 1px solid var(--line);
 }
 
 .portfolio {
-  min-height: calc(100svh - 96px);
+  min-height: 100svh;
 }
 
 .portfolio-head {
@@ -103,7 +67,7 @@ section { scroll-margin-top: 24px; }
   grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
   gap: clamp(28px, 6vw, 92px);
   align-items: end;
-  margin-bottom: clamp(38px, 5vw, 74px);
+  margin-top: clamp(54px, 8vw, 120px);
 }
 
 .eyebrow {
@@ -176,7 +140,7 @@ h2 {
   justify-content: space-between;
   align-items: end;
   gap: 20px;
-  margin-bottom: 18px;
+  margin-bottom: clamp(22px, 3vw, 38px);
 }
 
 .slider-bar p {
@@ -187,39 +151,21 @@ h2 {
   text-transform: uppercase;
 }
 
-.slider-controls {
-  display: flex;
-  gap: 10px;
-}
-
-.arrow {
-  width: 46px;
-  height: 46px;
-  border: 1px solid var(--line-strong);
-  background: transparent;
-  color: var(--text);
-  cursor: pointer;
-  font-size: 22px;
-  transition: background .2s, color .2s, transform .2s;
-}
-
-.arrow:hover {
-  background: var(--text);
-  color: var(--bg);
-  transform: translateY(-2px);
-}
-
 .work-track {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(760px, 88%);
+  grid-auto-columns: 100%;
   gap: 24px;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scroll-snap-type: inline mandatory;
-  scrollbar-width: thin;
-  scrollbar-color: var(--line-strong) transparent;
+  scrollbar-width: none;
   padding-bottom: 22px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.work-track::-webkit-scrollbar {
+  display: none;
 }
 
 .work-card {
@@ -263,15 +209,7 @@ h2 {
   gap: 40px;
 }
 
-.work-number {
-  color: var(--faint);
-  font-family: "Outfit", sans-serif;
-  font-size: clamp(72px, 8vw, 128px);
-  line-height: .78;
-}
-
 .work-info h3 {
-  margin-top: 18px;
   font-size: clamp(40px, 4.5vw, 78px);
 }
 
@@ -442,7 +380,7 @@ h2 {
   }
 
   .work-track {
-    grid-auto-columns: minmax(320px, 92%);
+    grid-auto-columns: 100%;
   }
 
   .work-card {
@@ -457,21 +395,6 @@ h2 {
 @media (max-width: 720px) {
   .page {
     border: 0;
-  }
-
-  .nav {
-    grid-template-columns: 1fr;
-  }
-
-  .brand {
-    font-size: 18px;
-    letter-spacing: .18em;
-  }
-
-  .nav-links {
-    gap: 18px;
-    overflow-x: auto;
-    font-size: 11px;
   }
 
   .section {
@@ -505,7 +428,7 @@ h2 {
   }
 
   .work-track {
-    grid-auto-columns: minmax(280px, 92vw);
+    grid-auto-columns: 100%;
     gap: 16px;
   }
 
@@ -515,10 +438,6 @@ h2 {
 
   .work-info {
     padding: 22px;
-  }
-
-  .work-number {
-    font-size: 68px;
   }
 
   .contact-link {
@@ -534,38 +453,10 @@ h2 {
 </head>
 <body>
 <div class="page">
-  <nav class="nav" aria-label="Primary navigation">
-    <a class="brand" href="#portfolio">Daichi Sasaki</a>
-    <div class="nav-links">
-      <a href="#portfolio">Portfolio</a>
-      <a href="#about">About me</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-
   <main>
     <section class="section portfolio" id="portfolio">
-      <div class="portfolio-head">
-        <div>
-          <p class="eyebrow">Web design / Frontend</p>
-          <h1>Portfolio</h1>
-        </div>
-        <div class="portfolio-side">
-          <p class="lead">制作したWebサイトをスライドで見られるポートフォリオです。各画像をクリックすると、Vercelで公開している実際のサイトへ移動します。</p>
-          <div class="portfolio-count" aria-label="Portfolio summary">
-            <div class="count-item"><strong>03</strong><span>Works</span></div>
-            <div class="count-item"><strong>AI</strong><span>Workflow</span></div>
-            <div class="count-item"><strong>Web</strong><span>Design</span></div>
-          </div>
-        </div>
-      </div>
-
       <div class="slider-bar">
         <p>Selected production demos</p>
-        <div class="slider-controls" aria-label="Portfolio slider controls">
-          <button class="arrow" type="button" data-slide="prev" aria-label="Previous project">←</button>
-          <button class="arrow" type="button" data-slide="next" aria-label="Next project">→</button>
-        </div>
       </div>
 
       <div class="work-track" id="workTrack" tabindex="0" aria-label="Portfolio works">
@@ -575,7 +466,6 @@ h2 {
           </a>
           <div class="work-info">
             <div>
-              <div class="work-number">01</div>
               <p class="eyebrow">Cafe website</p>
               <h3>Sunlight & Coffee</h3>
               <p>写真と余白を活かした、静かな高級感のあるカフェサイト。</p>
@@ -595,7 +485,6 @@ h2 {
           </a>
           <div class="work-info">
             <div>
-              <div class="work-number">02</div>
               <p class="eyebrow">Jewelry EC</p>
               <h3>W stone</h3>
               <p>天然石ジュエリーの空気感と商品導線を整えたブランドEC。</p>
@@ -615,7 +504,6 @@ h2 {
           </a>
           <div class="work-info">
             <div>
-              <div class="work-number">03</div>
               <p class="eyebrow">Fitness EC</p>
               <h3>IRONFORM</h3>
               <p>強いコントラストと商品スライダーを使ったフィットネスEC。</p>
@@ -628,6 +516,21 @@ h2 {
             <a class="open-site" href="https://gym-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer">Open site <span>→</span></a>
           </div>
         </article>
+      </div>
+
+      <div class="portfolio-head">
+        <div>
+          <p class="eyebrow">Web design / Frontend</p>
+          <h1>Portfolio</h1>
+        </div>
+        <div class="portfolio-side">
+          <p class="lead">制作したWebサイトをスライドで見られるポートフォリオです。各画像をクリックすると、Vercelで公開している実際のサイトへ移動します。</p>
+          <div class="portfolio-count" aria-label="Portfolio summary">
+            <div class="count-item"><strong>03</strong><span>Works</span></div>
+            <div class="count-item"><strong>AI</strong><span>Workflow</span></div>
+            <div class="count-item"><strong>Web</strong><span>Design</span></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -686,14 +589,31 @@ h2 {
 
 <script>
 const track = document.querySelector("#workTrack");
-const controls = document.querySelectorAll("[data-slide]");
+let loopLock = false;
 
-controls.forEach((button) => {
-  button.addEventListener("click", () => {
-    const direction = button.dataset.slide === "next" ? 1 : -1;
-    const amount = Math.max(track.clientWidth * 0.88, 320);
-    track.scrollBy({ left: direction * amount, behavior: "smooth" });
-  });
+const loopTrack = (direction) => {
+  if (loopLock) return;
+  const maxScroll = track.scrollWidth - track.clientWidth;
+  const atStart = track.scrollLeft <= 2;
+  const atEnd = track.scrollLeft >= maxScroll - 2;
+
+  if (direction > 0 && atEnd) {
+    loopLock = true;
+    track.scrollTo({ left: 0, behavior: "smooth" });
+    window.setTimeout(() => { loopLock = false; }, 500);
+  }
+
+  if (direction < 0 && atStart) {
+    loopLock = true;
+    track.scrollTo({ left: maxScroll, behavior: "smooth" });
+    window.setTimeout(() => { loopLock = false; }, 500);
+  }
+};
+
+track.addEventListener("wheel", (event) => {
+  if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+    loopTrack(event.deltaX);
+  }
 });
 </script>
 </body>
