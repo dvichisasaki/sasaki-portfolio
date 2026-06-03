@@ -1,52 +1,30 @@
-# sasaki-portfolio
-WEB Site Portfolio
+# Daichi Sasaki | Web Design Portfolio
 
+Webデザイン会社・制作会社への応募を想定したポートフォリオサイトです。
 
-洗練されたミニマルデザインを軸に制作した、Webデザイナー Daichi Sasaki のポートフォリオサイトです。  
-カメラマン・クリエイター・飲食店・サロン向けのWebサイトを想定し、  
-「世界観を壊さないデザイン」をテーマに制作しました。
+## Works
 
-## Concept
+- Sunlight & Coffee
+  - Cafe website
+  - React / Vite / Tailwind / SEO / Accessibility
+  - https://cafe-web-khaki.vercel.app/
+- W stone
+  - Jewelry e-commerce demo
+  - React / Vite / Product UI / SEO
+  - https://jewelry-brand-ec-vercel.vercel.app/
+- IRONFORM
+  - Fitness e-commerce demo
+  - React / Vite / Product slider / Responsive UI / SEO
+  - https://gym-ec-vercel.vercel.app/
 
-- Minimal
-- Elegant
-- Editorial
-- Creative Portfolio
+## Focus
 
-余白・タイポグラフィ・写真の見せ方を重視し、  
-海外のクリエイティブサイトのような空気感を意識しています。
+- Visual design with a clear brand mood
+- Responsive frontend implementation
+- SEO basics: title, description, OGP, structured data
+- Accessibility basics: alt text, semantic structure, keyboard-friendly UI
+- Production deployment with Vercel
 
-## Features
+## Live
 
-- フルスクリーンHeroセクション
-- スムースなページ切り替え
-- ミニマルなアニメーション
-- カスタムカーソル
-- レスポンシブ対応
-- ポートフォリオ掲載用デザイン
-
-## Target
-
-- Photographer
-- Creative Studio
-- Café / Restaurant
-- Beauty Salon
-- Personal Portfolio
-
-## Built With
-
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- GitHub Pages
-
-## Live Demo
-
-👉 https://dvichisasaki.github.io/sasaki-portfolio/
-
-## Author
-
-Daichi Sasaki  
-Web Designer — Mie, Japan
-
-Instagram / Contact coming soon.
+https://dvichisasaki.github.io/sasaki-portfolio/

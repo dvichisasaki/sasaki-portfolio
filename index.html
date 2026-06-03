@@ -3,622 +3,547 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DAICHI SASAKI — Web Designer</title>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<meta name="description" content="Daichi SasakiのWeb制作ポートフォリオ。カフェサイト、ジュエリーEC、フィットネスECの制作実績、目的、デザイン方針、実装内容を掲載。">
+<meta property="og:title" content="Daichi Sasaki | Web Design Portfolio">
+<meta property="og:description" content="Webデザイン、フロントエンド実装、SEO、アクセシビリティ改善まで行った3つの制作実績。">
+<meta property="og:type" content="website">
+<title>Daichi Sasaki | Web Design Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #f5f0eb;
-    --warm-white: #faf8f5;
-    --text: #1a1a18;
-    --muted: #8a8680;
-    --border: #ddd9d3;
-  }
+:root {
+  --paper: #fbfaf7;
+  --warm: #f1eee8;
+  --ink: #151513;
+  --muted: #68625b;
+  --soft: #928a80;
+  --line: #ded9d1;
+  --accent: #8a6a45;
+}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  min-width: 320px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Noto Sans JP", system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.8;
+}
 
-  body {
-    background: var(--warm-white);
-    color: var(--text);
-    font-family: 'EB Garamond', Georgia, serif;
-    font-size: 14px;
-    cursor: none;
-  }
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
 
-  .cursor {
-    width: 8px; height: 8px;
-    background: var(--text);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
-  }
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px clamp(20px, 5vw, 64px);
+  background: rgba(251, 250, 247, 0.88);
+  border-bottom: 1px solid rgba(222, 217, 209, 0.65);
+  backdrop-filter: blur(14px);
+}
 
-  .cursor-ring {
-    width: 32px; height: 32px;
-    border: 1px solid rgba(26,26,24,0.35);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9998;
-    transform: translate(-50%, -50%);
-  }
+.brand {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 18px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
 
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    padding: 22px 48px;
-    background: rgba(250,248,245,0.93);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.3s;
-  }
-  nav.scrolled { border-color: var(--border); }
-  .nav-left { display: flex; gap: 32px; flex: 1; }
-  .nav-logo {
-    flex: 1; text-align: center;
-    letter-spacing: 6px; font-size: 12px;
-    font-family: 'Cormorant Garamond', serif;
-    font-weight: 300; text-transform: uppercase;
-  }
-  .nav-right { flex: 1; display: flex; justify-content: flex-end; gap: 28px; }
-  nav a {
-    text-decoration: none; color: var(--text);
-    font-size: 13px; letter-spacing: 0.5px;
-    position: relative; cursor: none;
-  }
-  nav a::after {
-    content: ''; position: absolute;
-    bottom: -2px; left: 0; right: 0; height: 1px;
-    background: var(--text);
-    transform: scaleX(0); transition: transform 0.3s ease;
-    transform-origin: left;
-  }
-  nav a:hover::after { transform: scaleX(1); }
+.nav-links {
+  display: flex;
+  gap: clamp(18px, 3vw, 36px);
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
 
-  /* PAGES */
-  .page { display: none; }
-  .page.active { display: block; animation: pageFade 0.4s ease; }
-  @keyframes pageFade { from { opacity:0; } to { opacity:1; } }
+.nav-links a { transition: color .2s; }
+.nav-links a:hover { color: var(--ink); }
 
-  /* HERO */
-  .hero {
-    height: 100vh; position: relative; overflow: hidden;
-  }
-  .hero-img {
-    width: 100%; height: 100%; object-fit: cover;
-    filter: brightness(0.7);
-    transform: scale(1.04);
-    animation: heroZoom 8s ease forwards;
-  }
-  @keyframes heroZoom { to { transform: scale(1); } }
+.hero {
+  min-height: 88svh;
+  display: grid;
+  align-items: end;
+  padding: 120px clamp(22px, 6vw, 80px) 72px;
+  background:
+    linear-gradient(120deg, rgba(21, 21, 19, .05), transparent 42%),
+    var(--paper);
+}
 
-  .hero-copy {
-    position: absolute; bottom: 80px; left: 64px;
-    color: var(--warm-white);
-    opacity: 0; animation: fadeUp 1s 0.8s ease forwards;
-  }
-  @keyframes fadeUp {
-    from { opacity:0; transform:translateY(20px); }
-    to   { opacity:1; transform:translateY(0); }
-  }
-  .hero-copy .en-label {
-    font-size: 11px; letter-spacing: 3px;
-    text-transform: uppercase; opacity: 0.65; margin-bottom: 14px;
-  }
-  .hero-copy h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(38px, 5vw, 64px);
-    font-weight: 300; line-height: 1.15; margin-bottom: 18px;
-  }
-  .hero-copy p {
-    font-size: 14px; opacity: 0.7; line-height: 1.9; max-width: 360px;
-  }
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+  gap: clamp(42px, 8vw, 120px);
+  align-items: end;
+}
 
-  .hero-nav {
-    position: absolute; bottom: 80px; right: 64px;
-    display: flex; flex-direction: column; gap: 10px;
-    opacity: 0; animation: fadeUp 1s 1.1s ease forwards;
-  }
-  .hero-btn {
-    padding: 13px 40px;
-    border: 1px solid rgba(250,248,245,0.65);
-    color: var(--warm-white); background: transparent;
-    letter-spacing: 3px; font-size: 11px;
-    font-family: 'Cormorant Garamond', serif;
-    text-transform: uppercase; cursor: none;
-    transition: background 0.3s; text-align: center;
-  }
-  .hero-btn:hover { background: rgba(250,248,245,0.12); }
-  .hero-btn.solid {
-    background: rgba(250,248,245,0.88); color: var(--text);
-  }
-  .hero-btn.solid:hover { background: #fff; }
+.eyebrow {
+  color: var(--soft);
+  font-size: 11px;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+}
 
-  /* SECTION HEADER */
-  .sec-head {
-    padding: 60px 48px 28px;
-    border-bottom: 1px solid var(--border);
-  }
-  .sec-head .en {
-    font-size: 11px; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
-  }
-  .sec-head h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 30px; font-weight: 300;
-  }
+h1, h2, h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 300;
+  line-height: .95;
+}
 
-  /* WORKS GRID */
-  .works-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px; background: var(--border); margin-top: 1px;
-  }
+h1 {
+  margin-top: 22px;
+  max-width: 900px;
+  font-size: clamp(58px, 10vw, 138px);
+  letter-spacing: -.02em;
+}
 
-  .work-card {
-    background: var(--warm-white);
-    cursor: none; overflow: hidden; position: relative;
-  }
-  .work-img-wrap { position: relative; overflow: hidden; }
-  .work-img {
-    width: 100%; aspect-ratio: 16/10;
-    object-fit: cover; display: block;
-    transition: transform 0.6s ease;
-  }
-  .work-card:hover .work-img { transform: scale(1.04); }
-  .work-overlay {
-    position: absolute; inset: 0;
-    background: rgba(26,26,24,0.45);
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .work-card:hover .work-overlay { opacity: 1; }
-  .work-overlay span {
-    color: #fff; font-size: 11px;
-    letter-spacing: 3px; text-transform: uppercase;
-    border-bottom: 1px solid rgba(255,255,255,0.5);
-    padding-bottom: 4px;
-  }
+.hero-copy {
+  max-width: 520px;
+  color: var(--muted);
+}
 
-  .work-info { padding: 26px 30px 32px; }
-  .work-tag {
-    font-size: 10px; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
-  }
-  .work-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px; font-weight: 300; margin-bottom: 10px;
-  }
-  .work-desc {
-    font-size: 13px; color: var(--muted);
-    line-height: 1.85; margin-bottom: 16px;
-  }
-  .work-techs { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tech {
-    font-size: 10px; letter-spacing: 1px;
-    padding: 4px 10px; border: 1px solid var(--border); color: var(--muted);
-  }
-  .work-link {
-    display: inline-flex; align-items: center; gap: 6px;
-    font-size: 12px; letter-spacing: 1px; color: var(--text);
-    text-decoration: underline; text-underline-offset: 4px;
-    margin-top: 14px; cursor: none;
-  }
-  .demo-badge {
-    padding: 14px 30px;
-    background: var(--cream); border-top: 1px solid var(--border);
-    font-size: 12px; color: var(--muted); font-style: italic;
-  }
+.hero-copy p + p { margin-top: 18px; }
 
-  /* SERVICES */
-  .services-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1px; background: var(--border); margin-top: 1px;
-  }
-  .service-card {
-    background: var(--warm-white);
-    padding: 40px 32px 44px;
-    transition: background 0.2s;
-  }
-  .service-card:hover { background: var(--cream); }
-  .service-num {
-    font-size: 11px; letter-spacing: 2px;
-    color: var(--muted); margin-bottom: 20px;
-    font-family: 'Cormorant Garamond', serif;
-  }
-  .service-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px; font-weight: 300; margin-bottom: 14px; line-height: 1.3;
-  }
-  .service-desc {
-    font-size: 12px; color: var(--muted); line-height: 1.9;
-  }
+.hero-actions {
+  margin-top: 34px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
 
-  /* ABOUT */
-  .about-layout {
-    display: grid; grid-template-columns: 1fr 1fr;
-    min-height: calc(100vh - 65px); margin-top: 65px;
-  }
-  .about-img {
-    width: 100%; height: 100%; object-fit: cover;
-    display: block; filter: brightness(0.88);
-  }
-  .about-body {
-    padding: 80px 64px;
-    display: flex; flex-direction: column; justify-content: center;
-    border-left: 1px solid var(--border);
-    overflow-y: auto;
-  }
-  .about-label {
-    font-size: 11px; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 18px;
-  }
-  .about-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 44px; font-weight: 300; margin-bottom: 4px; line-height: 1.1;
-  }
-  .about-name-ja {
-    font-family: 'Noto Sans JP', sans-serif;
-    font-size: 16px; font-weight: 300; color: var(--muted);
-    letter-spacing: 4px; margin-bottom: 6px;
-  }
-  .about-role {
-    font-size: 12px; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--muted); margin-bottom: 36px;
-  }
-  .about-text {
-    font-size: 14px; line-height: 2.1;
-    color: var(--muted); margin-bottom: 14px;
-  }
-  .divider { width: 36px; height: 1px; background: var(--border); margin: 28px 0; }
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  transition: background .2s, color .2s, border-color .2s;
+}
 
-  .skills-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 32px;
-  }
-  .skill-item {
-    font-size: 12px; color: var(--muted);
-    padding: 10px 14px; border: 1px solid var(--border);
-    letter-spacing: 0.5px;
-  }
+.button.primary,
+.button:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
 
-  .target-list {
-    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px;
-  }
-  .target-tag {
-    font-size: 11px; letter-spacing: 1px;
-    padding: 6px 14px; border: 1px solid var(--border); color: var(--muted);
-  }
+.section {
+  padding: clamp(76px, 10vw, 132px) clamp(22px, 6vw, 80px);
+  border-top: 1px solid var(--line);
+}
 
-  .contact-btn-sm {
-    display: inline-block; padding: 14px 36px;
-    background: var(--text); color: var(--warm-white);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
-    text-decoration: none; cursor: none;
-    align-self: flex-start; transition: background 0.3s; border: none;
-  }
-  .contact-btn-sm:hover { background: #3a3a36; }
+.section-head {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(280px, .7fr);
+  gap: clamp(28px, 6vw, 90px);
+  align-items: end;
+  margin-bottom: clamp(38px, 6vw, 72px);
+}
 
-  /* CONTACT */
-  .contact-layout {
-    display: grid; grid-template-columns: 1fr 1fr;
-    min-height: calc(100vh - 65px); margin-top: 65px;
-  }
-  .contact-left {
-    background: var(--cream); padding: 80px 64px;
-    display: flex; flex-direction: column; justify-content: center;
-    border-right: 1px solid var(--border);
-  }
-  .contact-right {
-    padding: 80px 64px;
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  .contact-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 42px; font-weight: 300; line-height: 1.2; margin-bottom: 22px;
-  }
-  .contact-desc {
-    font-size: 14px; color: var(--muted); line-height: 2; margin-bottom: 44px;
-  }
-  .contact-items { display: flex; flex-direction: column; gap: 24px; }
-  .ci { display: flex; flex-direction: column; gap: 4px; }
-  .ci-label {
-    font-size: 10px; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--muted);
-  }
-  .ci-value { font-size: 15px; color: var(--text); }
+.section-head h2 {
+  margin-top: 14px;
+  font-size: clamp(44px, 7vw, 96px);
+}
 
-  .form { display: flex; flex-direction: column; gap: 18px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; }
-  .form-label {
-    font-size: 10px; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--muted);
-  }
-  .form-input, .form-textarea {
-    background: none; border: none;
-    border-bottom: 1px solid var(--border);
-    padding: 10px 0; font-family: 'EB Garamond', serif;
-    font-size: 14px; color: var(--text); outline: none;
-    transition: border-color 0.2s;
-  }
-  .form-input:focus, .form-textarea:focus { border-color: var(--text); }
-  .form-textarea { resize: none; height: 100px; }
-  .form-submit {
-    padding: 15px; background: var(--text); color: var(--warm-white);
-    border: none; font-family: 'Cormorant Garamond', serif;
-    font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
-    cursor: none; transition: background 0.3s; margin-top: 6px;
-  }
-  .form-submit:hover { background: #3a3a36; }
+.section-head p {
+  color: var(--muted);
+  max-width: 520px;
+}
 
-  /* FOOTER */
+.works {
+  display: grid;
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.work {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr);
+  background: var(--paper);
+}
+
+.work:nth-child(even) .work-media { order: 2; }
+
+.work-media {
+  min-height: 420px;
+  background: var(--warm);
+  overflow: hidden;
+}
+
+.work-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+  object-position: top center;
+  filter: saturate(.88) contrast(.98);
+}
+
+.work-body {
+  padding: clamp(30px, 5vw, 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 36px;
+}
+
+.work-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.pill {
+  border: 1px solid var(--line);
+  padding: 5px 10px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.work h3 {
+  margin-bottom: 20px;
+  font-size: clamp(38px, 5.4vw, 72px);
+}
+
+.work-summary {
+  color: var(--muted);
+  max-width: 560px;
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.case-item {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.case-item strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+
+.case-item p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+
+.skill {
+  min-height: 210px;
+  padding: 30px;
+  background: var(--paper);
+}
+
+.skill span {
+  color: var(--soft);
+  font-size: 11px;
+  letter-spacing: .2em;
+}
+
+.skill h3 {
+  margin: 26px 0 14px;
+  font-size: 30px;
+  line-height: 1.05;
+}
+
+.skill p {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(320px, 1.1fr);
+  gap: clamp(36px, 8vw, 120px);
+  align-items: start;
+}
+
+.about h2 {
+  font-size: clamp(46px, 8vw, 104px);
+}
+
+.about-body {
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.about-body p + p { margin-top: 18px; }
+
+.contact {
+  padding: clamp(76px, 10vw, 126px) clamp(22px, 6vw, 80px);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.contact-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 36px;
+  align-items: end;
+}
+
+.contact h2 {
+  margin-top: 16px;
+  font-size: clamp(50px, 8vw, 110px);
+}
+
+.contact p {
+  max-width: 520px;
+  color: rgba(251, 250, 247, .68);
+}
+
+.contact .button {
+  border-color: var(--paper);
+  color: var(--paper);
+}
+
+.contact .button:hover {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px clamp(22px, 6vw, 80px);
+  background: var(--ink);
+  color: rgba(251, 250, 247, .45);
+  border-top: 1px solid rgba(251, 250, 247, .12);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+  .nav { padding: 18px 22px; }
+  .nav-links { display: none; }
+  .hero-grid,
+  .section-head,
+  .work,
+  .about,
+  .contact-inner {
+    grid-template-columns: 1fr;
+  }
+  .work:nth-child(even) .work-media { order: 0; }
+  .work-media,
+  .work-media img { min-height: 300px; }
+  .case-grid,
+  .skills {
+    grid-template-columns: 1fr;
+  }
   footer {
-    border-top: 1px solid var(--border);
-    padding: 48px;
-    display: grid; grid-template-columns: 1fr 1fr 1fr;
-    gap: 40px; align-items: start;
+    flex-direction: column;
   }
-  .footer-links { display: flex; flex-direction: column; gap: 10px; }
-  .footer-links a {
-    font-size: 13px; color: var(--muted);
-    text-decoration: none; cursor: none;
-  }
-  .footer-links a:hover { color: var(--text); }
-  .footer-logo {
-    text-align: center; letter-spacing: 5px;
-    font-size: 11px; font-family: 'Cormorant Garamond', serif;
-    font-weight: 300; text-transform: uppercase; color: var(--muted);
-  }
-  .footer-copy {
-    text-align: right; font-size: 12px; color: var(--muted);
-  }
+}
 </style>
 </head>
 <body>
-
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
-<!-- NAV -->
-<nav id="navbar">
-  <div class="nav-left">
-    <a href="#" onclick="show('home')">Works</a>
-    <a href="#" onclick="show('services')">Services</a>
-    <a href="#" onclick="show('about')">About</a>
-  </div>
-  <div class="nav-logo">D A I C H I &nbsp; S A S A K I</div>
-  <div class="nav-right">
-    <a href="#" onclick="show('contact')">Contact</a>
+<nav class="nav" aria-label="Primary">
+  <a class="brand" href="#">Daichi Sasaki</a>
+  <div class="nav-links">
+    <a href="#works">Works</a>
+    <a href="#skills">Skills</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- HOME -->
-<div class="page active" id="page-home">
-  <div class="hero">
-    <img class="hero-img"
-      src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&q=80" alt="">
-    <div class="hero-copy">
-      <div class="en-label">Web Designer — Mie, Japan</div>
-      <h1>Stylish, minimal<br>web design<br>for creatives.</h1>
-      <p>カメラマン・飲食店・サロンなど、<br>世界観を大切にする方のためのWeb制作。</p>
-    </div>
-    <div class="hero-nav">
-      <button class="hero-btn solid" onclick="show('works')">View Works</button>
-      <button class="hero-btn" onclick="show('contact')">Contact</button>
-    </div>
-  </div>
-
-  <!-- WORKS preview -->
-  <div class="sec-head">
-    <div class="en">Selected Works</div>
-    <h2>制作実績</h2>
-  </div>
-  <div class="works-grid">
-    <div class="work-card">
-      <div class="work-img-wrap">
-        <img class="work-img"
-          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Demo">
-        <div class="work-overlay"><span>View Site</span></div>
+<main>
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Web Design / Frontend / Portfolio</p>
+        <h1>Websites with atmosphere and structure.</h1>
       </div>
-      <div class="work-info">
-        <div class="work-tag">Photographer Portfolio / Print Shop</div>
-        <div class="work-title">YUKI TANAKA — Photography</div>
-        <div class="work-desc">フォトグラファー向けのポートフォリオ＋写真販売サイト。全画面ビジュアル・ギャラリーグリッド・商品ページ・カート機能を実装。ミニマルで世界観を損なわないデザインを追求しました。</div>
-        <div class="work-techs">
-          <span class="tech">HTML</span>
-          <span class="tech">CSS</span>
-          <span class="tech">JavaScript</span>
-        </div>
-        <a class="work-link" href="https://dvichisasaki.github.io/portfolio-demo/" target="_blank">サイトを見る →</a>
-      </div>
-      <div class="demo-badge">※ デモ制作物（架空のクライアント）</div>
-    </div>
-
-    <div class="work-card">
-      <div class="work-img-wrap">
-        <img class="work-img"
-          src="https://dvichisasaki.github.io/ironform/22_running_shoes.jpg" alt="IRONFORM fitness ecommerce website">
-        <div class="work-overlay"><span>View Site</span></div>
-      </div>
-      <div class="work-info">
-        <div class="work-tag">Fitness E-commerce / Product Catalog</div>
-        <div class="work-title">IRONFORM — Training Gear</div>
-        <div class="work-desc">トレーニングギア・サプリメント向けのECデモサイト。迫力のあるヒーロー、カテゴリ別の商品カルーセル、動画コンテンツ風セクションを組み合わせ、スポーツブランドらしい力強い購買体験に仕上げました。</div>
-        <div class="work-techs">
-          <span class="tech">HTML</span>
-          <span class="tech">CSS</span>
-          <span class="tech">JavaScript</span>
-        </div>
-        <a class="work-link" href="https://dvichisasaki.github.io/ironform/" target="_blank">サイトを見る →</a>
-      </div>
-      <div class="demo-badge">※ デモ制作物（架空のクライアント）</div>
-    </div>
-  </div>
-
-  <!-- SERVICES preview -->
-  <div class="sec-head" style="margin-top:1px;">
-    <div class="en">Services</div>
-    <h2>できること</h2>
-  </div>
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-num">01</div>
-      <div class="service-name">Photographer<br>Portfolio</div>
-      <div class="service-desc">写真販売機能・ギャラリーグリッド・世界観を活かしたミニマルデザイン</div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">02</div>
-      <div class="service-name">Creative<br>Portfolio</div>
-      <div class="service-desc">イラストレーター・デザイナー向け。作品が主役になるレイアウト設計</div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">03</div>
-      <div class="service-name">Restaurant<br>/ Café</div>
-      <div class="service-desc">飲食店のブランドイメージを損なわない上質なLP・ホームページ制作</div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">04</div>
-      <div class="service-name">Salon<br>/ Beauty</div>
-      <div class="service-desc">サロン・美容室向け。予約導線を意識した洗練されたデザイン</div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer-links">
-      <a href="#" onclick="show('works')">Works</a>
-      <a href="#" onclick="show('services')">Services</a>
-      <a href="#" onclick="show('about')">About</a>
-      <a href="#" onclick="show('contact')">Contact</a>
-    </div>
-    <div class="footer-logo">D A I C H I &nbsp; S A S A K I</div>
-    <div class="footer-copy">© 2026 Daichi Sasaki</div>
-  </footer>
-</div>
-
-<!-- ABOUT -->
-<div class="page" id="page-about">
-  <div class="about-layout">
-    <img class="about-img"
-      src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=900&q=80" alt="">
-    <div class="about-body">
-      <div class="about-label">About</div>
-      <div class="about-name">Daichi Sasaki</div>
-      <div class="about-name-ja">佐々木　大地</div>
-      <div class="about-role">Web Designer — Mie, Japan</div>
-      <p class="about-text">
-        三重県を拠点に活動するWebデザイナーです。「世界観を壊さない」をデザインの軸に、カメラマン・クリエイター・飲食店・サロンなど、こだわりを持つ方のためのWebサイトを制作しています。
-      </p>
-      <p class="about-text">
-        テンプレートではなく、クライアントの空気感をそのままWebに落とし込むことを大切にしています。余白・タイポグラフィ・写真の見せ方にこだわったスタイリッシュでミニマルなデザインが得意です。
-      </p>
-      <div class="divider"></div>
-      <div class="skills-grid">
-        <div class="skill-item">HTML / CSS</div>
-        <div class="skill-item">JavaScript</div>
-        <div class="skill-item">Responsive Design</div>
-        <div class="skill-item">GitHub / Vercel</div>
-      </div>
-      <div class="about-label" style="margin-bottom:12px;">得意なジャンル</div>
-      <div class="target-list">
-        <span class="target-tag">カメラマン</span>
-        <span class="target-tag">クリエイター</span>
-        <span class="target-tag">飲食店・カフェ</span>
-        <span class="target-tag">サロン・美容室</span>
-        <span class="target-tag">ポートフォリオ</span>
-      </div>
-      <button class="contact-btn-sm" onclick="show('contact')">お問い合わせ</button>
-    </div>
-  </div>
-</div>
-
-<!-- CONTACT -->
-<div class="page" id="page-contact">
-  <div class="contact-layout">
-    <div class="contact-left">
-      <div class="contact-title">Let's work<br>together.</div>
-      <div class="contact-desc">
-        ご依頼・ご相談はお気軽にどうぞ。<br>
-        クラウドワークスからもお問い合わせいただけます。<br>
-        まずはどんな小さなことでも構いません。
-      </div>
-      <div class="contact-items">
-        <div class="ci">
-          <span class="ci-label">拠点</span>
-          <span class="ci-value">三重県（全国対応・完全リモート）</span>
-        </div>
-        <div class="ci">
-          <span class="ci-label">得意ジャンル</span>
-          <span class="ci-value">カメラマン / クリエイター / 飲食店 / サロン</span>
-        </div>
-        <div class="ci">
-          <span class="ci-label">対応サービス</span>
-          <span class="ci-value">クラウドワークス・ランサーズ・直接依頼</span>
+      <div class="hero-copy">
+        <p>世界観のあるビジュアルと、公開後に見られるSEO・アクセシビリティ・レスポンシブ実装までを意識して制作しています。</p>
+        <p>カフェ、ジュエリー、フィットネスECの3作品を、企画意図と実装ポイントが伝わる形でまとめました。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#works">View works</a>
+          <a class="button" href="https://github.com/dvichisasaki" target="_blank" rel="noopener noreferrer">GitHub</a>
         </div>
       </div>
     </div>
-    <div class="contact-right">
-      <div class="form">
-        <div class="form-row">
-          <div class="form-group">
-            <label class="form-label">お名前</label>
-            <input class="form-input" type="text" placeholder="山田 太郎">
+  </section>
+
+  <section class="section" id="works">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">Selected works</p>
+        <h2>Three production-ready demos.</h2>
+      </div>
+      <p>すべてVercelで公開し、デザインだけでなく、メタ情報、画像alt、構造化データ、導線の自然さまで調整しています。</p>
+    </div>
+
+    <div class="works">
+      <article class="work">
+        <a class="work-media" href="https://cafe-web-khaki.vercel.app/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/cafe-web.jpg" alt="Sunlight & Coffee cafe website screenshot">
+        </a>
+        <div class="work-body">
+          <div>
+            <div class="work-meta">
+              <span class="pill">Cafe site</span>
+              <span class="pill">React</span>
+              <span class="pill">Vercel</span>
+              <span class="pill">SEO</span>
+            </div>
+            <h3>Sunlight & Coffee</h3>
+            <p class="work-summary">静かな高級感を持つカフェサイト。写真、余白、細いタイポグラフィを使い、店舗の空気感とメニュー情報を両立しました。</p>
           </div>
-          <div class="form-group">
-            <label class="form-label">ご職業</label>
-            <input class="form-input" type="text" placeholder="カメラマン">
+          <div class="case-grid">
+            <div class="case-item"><strong>Target</strong><p>代官山・渋谷エリアで落ち着いたカフェを探す20〜40代。</p></div>
+            <div class="case-item"><strong>Design</strong><p>白と石色を基調に、写真主導のミニマルな構成。</p></div>
+            <div class="case-item"><strong>Build</strong><p>React / Vite / Tailwind。CoffeeとDessertはスライダー化。</p></div>
+            <div class="case-item"><strong>Improve</strong><p>OGP、JSON-LD、sitemap、メニューHTML、モーダルのフォーカス制御を追加。</p></div>
+          </div>
+          <div class="links">
+            <a class="button primary" href="https://cafe-web-khaki.vercel.app/" target="_blank" rel="noopener noreferrer">Live site</a>
+            <a class="button" href="https://github.com/dvichisasaki/cafe-web" target="_blank" rel="noopener noreferrer">GitHub</a>
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">メールアドレス</label>
-          <input class="form-input" type="email" placeholder="hello@example.com">
+      </article>
+
+      <article class="work">
+        <a class="work-media" href="https://jewelry-brand-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/jewelry-web.jpg" alt="W stone jewelry ecommerce website screenshot">
+        </a>
+        <div class="work-body">
+          <div>
+            <div class="work-meta">
+              <span class="pill">Jewelry EC</span>
+              <span class="pill">Branding</span>
+              <span class="pill">React</span>
+              <span class="pill">E-commerce UI</span>
+            </div>
+            <h3>W stone</h3>
+            <p class="work-summary">天然石ジュエリーのブランドEC。商品一覧、Wishlist、Cart風UIを持たせ、ブランドの静けさと購買導線を両立しました。</p>
+          </div>
+          <div class="case-grid">
+            <div class="case-item"><strong>Target</strong><p>日常使いできる上質なジュエリーを探すユーザー。</p></div>
+            <div class="case-item"><strong>Design</strong><p>余白、明朝体、淡いトーンで静かなラグジュアリー感を表現。</p></div>
+            <div class="case-item"><strong>Build</strong><p>React / Vite。商品データからカードとカートUIを構成。</p></div>
+            <div class="case-item"><strong>Improve</strong><p>壊れ画像を修正し、description、OGP、Store構造化データを追加。</p></div>
+          </div>
+          <div class="links">
+            <a class="button primary" href="https://jewelry-brand-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer">Live site</a>
+            <a class="button" href="https://github.com/dvichisasaki/jewelry-brand-ec" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">ご依頼内容</label>
-          <textarea class="form-textarea" placeholder="ポートフォリオサイトを作りたい、など"></textarea>
+      </article>
+
+      <article class="work">
+        <a class="work-media" href="https://gym-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer">
+          <img src="assets/gym-web.jpg" alt="IRONFORM fitness ecommerce website screenshot">
+        </a>
+        <div class="work-body">
+          <div>
+            <div class="work-meta">
+              <span class="pill">Fitness EC</span>
+              <span class="pill">Product UI</span>
+              <span class="pill">React</span>
+              <span class="pill">Responsive</span>
+            </div>
+            <h3>IRONFORM</h3>
+            <p class="work-summary">フィットネス用品のECサイト。カテゴリ別の商品スライダーとトレーニング動画導線で、スポーツブランドらしい強さを出しました。</p>
+          </div>
+          <div class="case-grid">
+            <div class="case-item"><strong>Target</strong><p>ジム、ランニング、筋トレ用品をまとめて探すユーザー。</p></div>
+            <div class="case-item"><strong>Design</strong><p>黒、白、オレンジで強いコントラストとスポーツ感を設計。</p></div>
+            <div class="case-item"><strong>Build</strong><p>React / Vite。横スクロール商品UI、カテゴリ別動画セクションを実装。</p></div>
+            <div class="case-item"><strong>Improve</strong><p>画像alt不足を修正し、SEOメタ、OGP、Store構造化データを追加。</p></div>
+          </div>
+          <div class="links">
+            <a class="button primary" href="https://gym-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer">Live site</a>
+            <a class="button" href="https://github.com/dvichisasaki/gym-ec" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </div>
         </div>
-        <button class="form-submit">送信する</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow">What I can do</p>
+        <h2>Design to deploy.</h2>
+      </div>
+      <p>見た目だけで終わらせず、公開後の見え方、検索、読みやすさ、運用しやすさまで整えることを意識しています。</p>
+    </div>
+    <div class="skills">
+      <div class="skill"><span>01</span><h3>Visual Design</h3><p>余白、写真、タイポグラフィを使い、業種ごとの世界観に合わせた画面を作ります。</p></div>
+      <div class="skill"><span>02</span><h3>Frontend</h3><p>HTML/CSS/JavaScript、React、Viteを使ってレスポンシブに実装します。</p></div>
+      <div class="skill"><span>03</span><h3>SEO Basics</h3><p>title、description、OGP、JSON-LD、sitemapなど公開サイトの基本を整えます。</p></div>
+      <div class="skill"><span>04</span><h3>Accessibility</h3><p>alt、見出し構造、キーボード操作、フォーカス制御などを改善します。</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="about">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>Daichi Sasaki</h2>
+      </div>
+      <div class="about-body">
+        <p>Webデザインとフロントエンド実装を学びながら、実際に公開できる品質のデモサイトを制作しています。</p>
+        <p>ブランドの雰囲気を作ること、画面として美しく見せること、そしてSEOやアクセシビリティの基本まで整えることを重視しています。</p>
+        <p>制作会社やWebデザイン会社で、デザインと実装の両方に関わるポジションを目指しています。</p>
       </div>
     </div>
-  </div>
-</div>
+  </section>
 
-<script>
-  // Cursor
-  const cur = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove', e => {
-    mx=e.clientX; my=e.clientY;
-    cur.style.left=mx+'px'; cur.style.top=my+'px';
-  });
-  (function anim(){
-    rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
-    ring.style.left=rx+'px'; ring.style.top=ry+'px';
-    requestAnimationFrame(anim);
-  })();
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2>Ready to work.</h2>
+        <p>制作会社・Webデザイン会社でのジュニアデザイナー / コーダー / フロントエンド寄り制作職を想定したポートフォリオです。</p>
+      </div>
+      <a class="button" href="https://github.com/dvichisasaki" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+    </div>
+  </section>
+</main>
 
-  // Scroll
-  window.addEventListener('scroll',()=>{
-    document.getElementById('navbar').classList.toggle('scrolled',scrollY>20);
-  });
-
-  // Page switch
-  function show(name){
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    const id = name==='works'?'home':'page-'+name;
-    const el = name==='works'
-      ? document.getElementById('page-home')
-      : document.getElementById('page-'+name);
-    if(el){ el.classList.add('active'); scrollTo(0,0); }
-  }
-</script>
+<footer>
+  <span>© 2026 Daichi Sasaki</span>
+  <span>Web Design / Frontend</span>
+</footer>
 </body>
 </html>
