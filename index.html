@@ -227,63 +227,32 @@ h2 {
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(260px, .48fr);
   gap: 0;
-  min-height: 620px;
-  border: 1px solid var(--line);
-  background: linear-gradient(135deg, rgba(255, 247, 239, .035), rgba(255, 247, 239, .008));
+  align-items: center;
+  min-height: 560px;
 }
 
 .work-visual {
   min-width: 0;
-  padding: clamp(16px, 2.2vw, 28px);
-  border-right: 1px solid var(--line);
-  display: grid;
-  align-items: center;
-}
-
-.browser-frame {
+  aspect-ratio: 16 / 9;
+  display: block;
   overflow: hidden;
-  border: 1px solid rgba(255, 247, 239, .22);
-  background: #0b0b0a;
+  border-radius: clamp(18px, 2vw, 30px);
+  background: var(--panel);
   box-shadow: 0 28px 80px rgba(0, 0, 0, .46);
 }
 
-.browser-top {
-  height: 34px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0 14px;
-  border-bottom: 1px solid rgba(255, 247, 239, .12);
-  background: #151412;
-}
-
-.browser-top span {
-  width: 8px;
-  height: 8px;
-  border-radius: 99px;
-  background: var(--line-strong);
-}
-
-.screen {
-  aspect-ratio: 16 / 10;
-  display: grid;
-  place-items: center;
-  background: #111;
-  overflow: hidden;
-}
-
-.screen img {
+.work-visual img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: top center;
   filter: saturate(.92) brightness(.9);
   transition: filter .35s ease, transform .35s ease;
 }
 
-.work-card:hover .screen img {
+.work-visual:hover img {
   filter: saturate(1) brightness(1);
-  transform: scale(1.015);
+  transform: scale(1.025);
 }
 
 .work-info {
@@ -480,11 +449,6 @@ h2 {
     min-height: auto;
   }
 
-  .work-visual {
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
   .portrait-card {
     max-width: 440px;
   }
@@ -545,8 +509,8 @@ h2 {
     gap: 16px;
   }
 
-  .screen {
-    aspect-ratio: 4 / 3;
+  .work-visual {
+    border-radius: 18px;
   }
 
   .work-info {
@@ -607,12 +571,7 @@ h2 {
       <div class="work-track" id="workTrack" tabindex="0" aria-label="Portfolio works">
         <article class="work-card">
           <a class="work-visual" href="https://cafe-web-khaki.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Sunlight & Coffee website">
-            <div class="browser-frame">
-              <div class="browser-top"><span></span><span></span><span></span></div>
-              <div class="screen">
-                <img src="assets/cafe-web.jpg" alt="Sunlight & Coffee cafe website screenshot">
-              </div>
-            </div>
+            <img src="assets/cafe-web.jpg" alt="Sunlight & Coffee cafe website screenshot">
           </a>
           <div class="work-info">
             <div>
@@ -632,12 +591,7 @@ h2 {
 
         <article class="work-card">
           <a class="work-visual" href="https://jewelry-brand-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open W stone website">
-            <div class="browser-frame">
-              <div class="browser-top"><span></span><span></span><span></span></div>
-              <div class="screen">
-                <img src="assets/jewelry-web.jpg" alt="W stone jewelry ecommerce website screenshot">
-              </div>
-            </div>
+            <img src="assets/jewelry-web.jpg" alt="W stone jewelry ecommerce website screenshot">
           </a>
           <div class="work-info">
             <div>
@@ -657,12 +611,7 @@ h2 {
 
         <article class="work-card">
           <a class="work-visual" href="https://gym-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open IRONFORM website">
-            <div class="browser-frame">
-              <div class="browser-top"><span></span><span></span><span></span></div>
-              <div class="screen">
-                <img src="assets/gym-web.jpg" alt="IRONFORM fitness ecommerce website screenshot">
-              </div>
-            </div>
+            <img src="assets/gym-web.jpg" alt="IRONFORM fitness ecommerce website screenshot">
           </a>
           <div class="work-info">
             <div>
