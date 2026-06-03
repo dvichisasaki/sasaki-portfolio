@@ -24,6 +24,7 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
+html, body { scroll-padding-top: 96px; }
 body {
   min-width: 320px;
   background: var(--paper);
@@ -35,6 +36,10 @@ body {
 
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
+
+section {
+  scroll-margin-top: 96px;
+}
 
 .nav {
   position: fixed;
@@ -305,9 +310,13 @@ h1 {
 
 .about {
   display: grid;
-  grid-template-columns: minmax(0, .8fr) minmax(320px, 1.1fr);
+  grid-template-columns: minmax(0, .72fr) minmax(360px, 1.28fr);
   gap: clamp(36px, 8vw, 120px);
   align-items: start;
+}
+
+#about {
+  padding-bottom: clamp(64px, 7vw, 96px);
 }
 
 .about h2 {
@@ -316,15 +325,17 @@ h1 {
 
 .about-body {
   color: var(--muted);
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 1.9;
 }
 
-.about-body p + p { margin-top: 18px; }
+.about-body p + p { margin-top: 16px; }
 
 .contact {
   padding: clamp(76px, 10vw, 126px) clamp(22px, 6vw, 80px);
   background: var(--ink);
   color: var(--paper);
+  scroll-margin-top: 96px;
 }
 
 .contact-inner {
@@ -614,7 +625,10 @@ footer {
       </div>
       <div class="about-body">
         <p>Webデザインとフロントエンド実装を学び、公開できる品質のデモサイトを制作しています。</p>
-        <p>制作会社やWebデザイン会社で、デザインと実装の両方に関わるポジションを目指しています。</p>
+        <p>私自身DJや写真が趣味なこともあり、見せ方の大切さを深く理解しているつもりです。</p>
+        <p>普段からCodexやClaudeなどの生成AIを活用していて、フライヤー制作、Web制作の学習などに日常的に取り入れています。</p>
+        <p>現在コーディングの実務経験は多くありませんが、その分素直に学び、責任を持って最後までやり遂げることを大切にしています。</p>
+        <p>ぜひ私の作成したサイトをご覧になっていただきたいです。</p>
       </div>
     </div>
   </section>
@@ -638,6 +652,10 @@ footer {
         <a class="contact-link" href="https://github.com/dvichisasaki" target="_blank" rel="noopener noreferrer">
           <span>GitHub</span>
           <strong>dvichisasaki</strong>
+        </a>
+        <a class="contact-link" href="https://sasaki-portfolio-sage.vercel.app" target="_blank" rel="noopener noreferrer">
+          <span>Vercel</span>
+          <strong>sasaki-portfolio-sage.vercel.app</strong>
         </a>
       </div>
     </div>
