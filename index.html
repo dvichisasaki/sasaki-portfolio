@@ -107,7 +107,7 @@ h1 {
 }
 
 .hero-copy {
-  max-width: 640px;
+  max-width: 560px;
   color: var(--muted);
 }
 
@@ -203,11 +203,11 @@ h1 {
 }
 
 .work-body {
-  padding: clamp(30px, 5vw, 60px);
+  padding: clamp(28px, 4vw, 52px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 36px;
+  gap: 28px;
 }
 
 .work-meta {
@@ -234,25 +234,28 @@ h1 {
 
 .work-summary {
   color: var(--muted);
-  max-width: 560px;
+  max-width: 420px;
 }
 
 .case-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(190px, 1fr));
-  gap: 22px;
+  gap: 0;
+  border-top: 1px solid var(--line);
 }
 
 .case-item {
-  border-top: 1px solid var(--line);
-  padding-top: 16px;
+  display: grid;
+  grid-template-columns: 86px minmax(0, 1fr);
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
 }
 
 .case-item strong {
-  display: block;
-  margin-bottom: 6px;
+  display: inline-block;
   font-size: 11px;
-  letter-spacing: .24em;
+  letter-spacing: .2em;
   text-transform: uppercase;
   white-space: nowrap;
 }
@@ -260,6 +263,7 @@ h1 {
 .case-item p {
   color: var(--muted);
   font-size: 13px;
+  line-height: 1.55;
 }
 
 .links {
@@ -445,8 +449,7 @@ footer {
         <h1>Websites with atmosphere and structure.</h1>
       </div>
       <div class="hero-copy">
-        <p>世界観のあるビジュアルと、公開後に見られるSEO・アクセシビリティ・レスポンシブ実装までを意識して制作しています。</p>
-        <p>カフェ、ジュエリー、フィットネスECの3作品を、企画意図と実装ポイントが伝わる形でまとめました。</p>
+        <p>世界観のあるビジュアルと、公開まで意識したWeb制作ポートフォリオです。</p>
         <div class="hero-actions">
           <a class="button primary" href="#works">View works</a>
           <a class="button" href="https://github.com/dvichisasaki" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -461,7 +464,7 @@ footer {
         <p class="eyebrow">Selected works</p>
         <h2>Three production-ready demos.</h2>
       </div>
-      <p>すべてVercelで公開し、デザインだけでなく、メタ情報、画像alt、構造化データ、導線の自然さまで調整しています。</p>
+      <p>公開済みの3作品。デザイン、実装、SEOの基本まで整えています。</p>
     </div>
 
     <div class="works">
@@ -478,13 +481,12 @@ footer {
               <span class="pill">SEO</span>
             </div>
             <h3>Sunlight & Coffee</h3>
-            <p class="work-summary">静かな高級感を持つカフェサイト。写真、余白、細いタイポグラフィを使い、店舗の空気感とメニュー情報を両立しました。</p>
+            <p class="work-summary">静かな高級感を持つカフェサイト。</p>
           </div>
           <div class="case-grid">
-            <div class="case-item"><strong>Target</strong><p>代官山・渋谷エリアで落ち着いたカフェを探す20〜40代。</p></div>
-            <div class="case-item"><strong>Design</strong><p>白と石色を基調に、写真主導のミニマルな構成。</p></div>
-            <div class="case-item"><strong>Build</strong><p>React / Vite / Tailwind。CoffeeとDessertはスライダー化。</p></div>
-            <div class="case-item"><strong>Improve</strong><p>OGP、JSON-LD、sitemap、メニューHTML、モーダルのフォーカス制御を追加。</p></div>
+            <div class="case-item"><strong>Role</strong><p>Design / Frontend</p></div>
+            <div class="case-item"><strong>Stack</strong><p>React / Vite / Tailwind</p></div>
+            <div class="case-item"><strong>Focus</strong><p>Menu slider, SEO, accessibility</p></div>
           </div>
           <div class="links">
             <a class="button primary" href="https://cafe-web-khaki.vercel.app/" target="_blank" rel="noopener noreferrer">Live site</a>
@@ -506,13 +508,12 @@ footer {
               <span class="pill">E-commerce UI</span>
             </div>
             <h3>W stone</h3>
-            <p class="work-summary">天然石ジュエリーのブランドEC。商品一覧、Wishlist、Cart風UIを持たせ、ブランドの静けさと購買導線を両立しました。</p>
+            <p class="work-summary">天然石ジュエリーのブランドEC。</p>
           </div>
           <div class="case-grid">
-            <div class="case-item"><strong>Target</strong><p>日常使いできる上質なジュエリーを探すユーザー。</p></div>
-            <div class="case-item"><strong>Design</strong><p>余白、明朝体、淡いトーンで静かなラグジュアリー感を表現。</p></div>
-            <div class="case-item"><strong>Build</strong><p>React / Vite。商品データからカードとカートUIを構成。</p></div>
-            <div class="case-item"><strong>Improve</strong><p>壊れ画像を修正し、description、OGP、Store構造化データを追加。</p></div>
+            <div class="case-item"><strong>Role</strong><p>Design / Frontend</p></div>
+            <div class="case-item"><strong>Stack</strong><p>React / Vite</p></div>
+            <div class="case-item"><strong>Focus</strong><p>Product UI, cart flow, OGP</p></div>
           </div>
           <div class="links">
             <a class="button primary" href="https://jewelry-brand-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer">Live site</a>
@@ -534,13 +535,12 @@ footer {
               <span class="pill">Responsive</span>
             </div>
             <h3>IRONFORM</h3>
-            <p class="work-summary">フィットネス用品のECサイト。カテゴリ別の商品スライダーとトレーニング動画導線で、スポーツブランドらしい強さを出しました。</p>
+            <p class="work-summary">フィットネス用品のECサイト。</p>
           </div>
           <div class="case-grid">
-            <div class="case-item"><strong>Target</strong><p>ジム、ランニング、筋トレ用品をまとめて探すユーザー。</p></div>
-            <div class="case-item"><strong>Design</strong><p>黒、白、オレンジで強いコントラストとスポーツ感を設計。</p></div>
-            <div class="case-item"><strong>Build</strong><p>React / Vite。横スクロール商品UI、カテゴリ別動画セクションを実装。</p></div>
-            <div class="case-item"><strong>Improve</strong><p>画像alt不足を修正し、SEOメタ、OGP、Store構造化データを追加。</p></div>
+            <div class="case-item"><strong>Role</strong><p>Design / Frontend</p></div>
+            <div class="case-item"><strong>Stack</strong><p>React / Vite</p></div>
+            <div class="case-item"><strong>Focus</strong><p>EC layout, product slider, SEO</p></div>
           </div>
           <div class="links">
             <a class="button primary" href="https://gym-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer">Live site</a>
@@ -557,13 +557,13 @@ footer {
         <p class="eyebrow">What I can do</p>
         <h2>Design to deploy.</h2>
       </div>
-      <p>見た目だけで終わらせず、公開後の見え方、検索、読みやすさ、運用しやすさまで整えることを意識しています。</p>
+      <p>デザインから公開前の基本調整まで。</p>
     </div>
     <div class="skills">
-      <div class="skill"><span>01</span><h3>Visual Design</h3><p>余白、写真、タイポグラフィを使い、業種ごとの世界観に合わせた画面を作ります。</p></div>
-      <div class="skill"><span>02</span><h3>Frontend</h3><p>HTML/CSS/JavaScript、React、Viteを使ってレスポンシブに実装します。</p></div>
-      <div class="skill"><span>03</span><h3>SEO Basics</h3><p>title、description、OGP、JSON-LD、sitemapなど公開サイトの基本を整えます。</p></div>
-      <div class="skill"><span>04</span><h3>Accessibility</h3><p>alt、見出し構造、キーボード操作、フォーカス制御などを改善します。</p></div>
+      <div class="skill"><span>01</span><h3>Visual Design</h3><p>写真、余白、タイポグラフィ。</p></div>
+      <div class="skill"><span>02</span><h3>Frontend</h3><p>HTML/CSS/JavaScript、React。</p></div>
+      <div class="skill"><span>03</span><h3>SEO Basics</h3><p>meta、OGP、JSON-LD。</p></div>
+      <div class="skill"><span>04</span><h3>Accessibility</h3><p>alt、構造、フォーカス。</p></div>
     </div>
   </section>
 
@@ -574,8 +574,7 @@ footer {
         <h2>Daichi Sasaki</h2>
       </div>
       <div class="about-body">
-        <p>Webデザインとフロントエンド実装を学びながら、実際に公開できる品質のデモサイトを制作しています。</p>
-        <p>ブランドの雰囲気を作ること、画面として美しく見せること、そしてSEOやアクセシビリティの基本まで整えることを重視しています。</p>
+        <p>Webデザインとフロントエンド実装を学び、公開できる品質のデモサイトを制作しています。</p>
         <p>制作会社やWebデザイン会社で、デザインと実装の両方に関わるポジションを目指しています。</p>
       </div>
     </div>
@@ -586,7 +585,7 @@ footer {
       <div>
         <p class="eyebrow">Contact</p>
         <h2>Ready to work.</h2>
-        <p>制作会社・Webデザイン会社でのジュニアデザイナー / コーダー / フロントエンド寄り制作職を想定したポートフォリオです。</p>
+        <p>Junior designer / coder / frontend.</p>
       </div>
       <a class="button" href="https://github.com/dvichisasaki" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
     </div>
