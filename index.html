@@ -3,668 +3,594 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Daichi SasakiのWeb制作ポートフォリオ。カフェサイト、ジュエリーEC、フィットネスECの制作実績、目的、デザイン方針、実装内容を掲載。">
-<meta property="og:title" content="Daichi Sasaki | Web Design Portfolio">
-<meta property="og:description" content="Webデザイン、フロントエンド実装、SEO、アクセシビリティ改善まで行った3つの制作実績。">
+<meta name="description" content="Daichi SasakiのWeb制作ポートフォリオ。公開済みのカフェサイト、ジュエリーEC、フィットネスEC、自己紹介、連絡先を掲載。">
+<meta property="og:title" content="Daichi Sasaki | Web Portfolio">
+<meta property="og:description" content="黒を基調にしたWeb制作ポートフォリオ。制作したサイトをスライドで紹介しています。">
 <meta property="og:type" content="website">
-<title>Daichi Sasaki | Web Design Portfolio</title>
+<title>Daichi Sasaki | Web Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --paper: #fbfaf7;
-  --warm: #f1eee8;
-  --ink: #151513;
-  --muted: #68625b;
-  --soft: #928a80;
-  --line: #ded9d1;
-  --accent: #8a6a45;
+  --bg: #10100f;
+  --panel: #171615;
+  --panel-soft: #1e1c1a;
+  --text: #f5d9c8;
+  --text-strong: #fff4eb;
+  --muted: #9b8f87;
+  --line: rgba(245, 217, 200, .16);
+  --line-strong: rgba(245, 217, 200, .34);
+  --accent: #f1b995;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-html, body { scroll-padding-top: 96px; }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 94px;
+}
 body {
   min-width: 320px;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: "Noto Sans JP", system-ui, sans-serif;
-  font-size: 14px;
-  line-height: 1.8;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, sans-serif;
+  line-height: 1.6;
 }
 
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
+button { font: inherit; }
+section { scroll-margin-top: 94px; }
 
-section {
-  scroll-margin-top: 96px;
+.shell {
+  width: min(100%, 1480px);
+  margin: 0 auto;
+  border-left: 1px solid var(--line);
+  border-right: 1px solid var(--line);
 }
 
 .nav {
-  position: fixed;
-  inset: 0 0 auto;
-  z-index: 20;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 22px clamp(20px, 5vw, 64px);
-  background: rgba(251, 250, 247, 0.88);
-  border-bottom: 1px solid rgba(222, 217, 209, 0.65);
-  backdrop-filter: blur(14px);
+  justify-content: space-between;
+  gap: 24px;
+  padding: 26px clamp(20px, 4vw, 52px);
+  background: rgba(16, 16, 15, .86);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
 }
 
 .brand {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 18px;
-  letter-spacing: .28em;
+  color: var(--text-strong);
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: clamp(18px, 2vw, 28px);
+  letter-spacing: .24em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .nav-links {
   display: flex;
-  gap: clamp(18px, 3vw, 36px);
+  gap: clamp(18px, 3vw, 42px);
   color: var(--muted);
   font-size: 12px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-}
-
-.nav-links a { transition: color .2s; }
-.nav-links a:hover { color: var(--ink); }
-
-.hero {
-  min-height: 88svh;
-  display: grid;
-  align-items: end;
-  padding: 120px clamp(22px, 6vw, 80px) 72px;
-  background:
-    linear-gradient(120deg, rgba(21, 21, 19, .05), transparent 42%),
-    var(--paper);
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
-  gap: clamp(42px, 8vw, 120px);
-  align-items: end;
-}
-
-.eyebrow {
-  color: var(--soft);
-  font-size: 11px;
-  letter-spacing: .32em;
-  text-transform: uppercase;
-}
-
-h1, h2, h3 {
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 300;
-  line-height: 1;
-  text-wrap: balance;
-}
-
-h1 {
-  margin-top: 22px;
-  max-width: 900px;
-  font-size: clamp(58px, 10vw, 138px);
-  letter-spacing: -.02em;
-}
-
-.hero-copy {
-  max-width: 560px;
-  color: var(--muted);
-}
-
-.hero-copy p + p { margin-top: 18px; }
-
-.hero-actions {
-  margin-top: 34px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 0 20px;
-  border: 1px solid var(--ink);
-  color: var(--ink);
-  font-size: 11px;
+  font-weight: 600;
   letter-spacing: .22em;
   text-transform: uppercase;
-  white-space: nowrap;
-  transition: background .2s, color .2s, border-color .2s;
 }
 
-.button.primary,
-.button:hover {
-  background: var(--ink);
-  color: var(--paper);
+.nav-links a {
+  transition: color .2s;
+}
+
+.nav-links a:hover {
+  color: var(--text-strong);
 }
 
 .section {
-  padding: clamp(76px, 10vw, 132px) clamp(22px, 6vw, 80px);
-  border-top: 1px solid var(--line);
+  padding: clamp(64px, 9vw, 126px) clamp(20px, 4vw, 52px);
+  border-bottom: 1px solid var(--line);
 }
 
-.section-head {
+.section-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: start;
+  margin-bottom: clamp(32px, 5vw, 64px);
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text-strong);
+  font-family: "Outfit", system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -.03em;
+  line-height: .9;
+}
+
+h1 {
+  margin-top: 18px;
+  max-width: 980px;
+  font-size: clamp(64px, 11vw, 168px);
+}
+
+h2 {
+  margin-top: 12px;
+  font-size: clamp(48px, 7vw, 112px);
+}
+
+.section-copy {
+  max-width: 360px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.slider-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.arrow {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 22px;
+  transition: background .2s, color .2s, border-color .2s;
+}
+
+.arrow:hover {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.portfolio-track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(320px, 58vw);
+  gap: 22px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+  padding-bottom: 22px;
+}
+
+.project {
+  min-height: 560px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 18px;
+  scroll-snap-align: start;
+}
+
+.project-meta {
+  min-height: 42px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.project-meta strong {
+  display: block;
+  color: var(--text-strong);
+  font-weight: 700;
+}
+
+.project-link {
+  position: relative;
+  min-height: 500px;
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.project-link img {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  object-fit: cover;
+  object-position: top center;
+  filter: saturate(.88) brightness(.8);
+  transform: scale(1.01);
+  transition: transform .45s ease, filter .45s ease;
+}
+
+.project-link:hover img {
+  filter: saturate(1) brightness(.96);
+  transform: scale(1.045);
+}
+
+.project-caption {
+  position: absolute;
+  inset: auto 0 0;
+  display: grid;
+  gap: 10px;
+  padding: 28px;
+  background: linear-gradient(0deg, rgba(16, 16, 15, .94), rgba(16, 16, 15, .05));
+}
+
+.project-caption h3 {
+  font-size: clamp(34px, 4.2vw, 70px);
+}
+
+.project-caption p {
+  max-width: 460px;
+  color: rgba(255, 244, 235, .72);
+  font-size: 13px;
+}
+
+.open-label {
+  width: fit-content;
+  margin-top: 6px;
+  border-bottom: 1px solid var(--text);
+  color: var(--text);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, .55fr) minmax(0, 1fr);
+  gap: clamp(28px, 6vw, 92px);
+  align-items: end;
+}
+
+.profile-card {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  padding: 14px;
+}
+
+.profile-card img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  filter: saturate(.92) contrast(1.02);
+}
+
+.profile-note {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding-top: 14px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.about-text {
+  display: grid;
+  gap: 18px;
+  max-width: 760px;
+  color: rgba(255, 244, 235, .78);
+  font-size: clamp(15px, 1.45vw, 20px);
+}
+
+.about-text p {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.contact-grid {
   display: grid;
   grid-template-columns: minmax(0, .9fr) minmax(280px, .7fr);
-  gap: clamp(28px, 6vw, 90px);
-  align-items: end;
-  margin-bottom: clamp(38px, 6vw, 72px);
-}
-
-.section-head h2 {
-  margin-top: 14px;
-  font-size: clamp(44px, 7vw, 96px);
-}
-
-.section-head p {
-  color: var(--muted);
-  max-width: 580px;
-}
-
-.works {
-  display: grid;
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-}
-
-.work {
-  display: grid;
-  grid-template-columns: minmax(420px, .95fr) minmax(0, 1.05fr);
-  background: var(--paper);
-}
-
-.work:nth-child(even) .work-media { order: 2; }
-
-.work-media {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 480px;
-  padding: clamp(18px, 3vw, 36px);
-  background:
-    linear-gradient(135deg, rgba(21, 21, 19, .04), transparent 48%),
-    var(--warm);
-  overflow: hidden;
-}
-
-.work-media img {
-  width: 100%;
-  height: auto;
-  max-height: 620px;
-  object-fit: contain;
-  object-position: center;
-  border: 1px solid rgba(21, 21, 19, .1);
-  box-shadow: 0 24px 70px rgba(21, 21, 19, .14);
-  filter: saturate(.88) contrast(.98);
-}
-
-.work-body {
-  padding: clamp(28px, 4vw, 52px);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 28px;
-}
-
-.work-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 22px;
-}
-
-.pill {
-  border: 1px solid var(--line);
-  padding: 5px 10px;
-  color: var(--muted);
-  font-size: 10px;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.work h3 {
-  margin-bottom: 20px;
-  font-size: clamp(38px, 5.4vw, 72px);
-}
-
-.work-summary {
-  color: var(--muted);
-  max-width: 420px;
-}
-
-.case-grid {
-  display: grid;
-  gap: 0;
-  border-top: 1px solid var(--line);
-}
-
-.case-item {
-  display: grid;
-  grid-template-columns: 86px minmax(0, 1fr);
-  gap: 18px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--line);
-  align-items: baseline;
-}
-
-.case-item strong {
-  display: inline-block;
-  font-size: 11px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.case-item p {
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.55;
-}
-
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.skills {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-}
-
-.skill {
-  min-height: 210px;
-  padding: 30px;
-  background: var(--paper);
-}
-
-.skill span {
-  color: var(--soft);
-  font-size: 11px;
-  letter-spacing: .2em;
-}
-
-.skill h3 {
-  margin: 26px 0 14px;
-  font-size: 30px;
-  line-height: 1.08;
-}
-
-.skill p {
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.about {
-  display: grid;
-  grid-template-columns: minmax(0, .72fr) minmax(360px, 1.28fr);
-  gap: clamp(36px, 8vw, 120px);
-  align-items: start;
-}
-
-#about {
-  padding-bottom: clamp(64px, 7vw, 96px);
-}
-
-.about h2 {
-  font-size: clamp(46px, 8vw, 104px);
-}
-
-.about-body {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.9;
-}
-
-.about-body p + p { margin-top: 16px; }
-
-.contact {
-  padding: clamp(76px, 10vw, 126px) clamp(22px, 6vw, 80px);
-  background: var(--ink);
-  color: var(--paper);
-  scroll-margin-top: 96px;
-}
-
-.contact-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
-  gap: 36px;
+  gap: clamp(30px, 7vw, 110px);
   align-items: end;
 }
 
-.contact h2 {
-  margin-top: 16px;
-  font-size: clamp(50px, 8vw, 110px);
+.contact-title {
+  max-width: 760px;
 }
 
-.contact p {
-  max-width: 520px;
-  color: rgba(251, 250, 247, .68);
+.contact-title h2 {
+  font-size: clamp(58px, 9vw, 142px);
+}
+
+.contact-title p {
+  margin-top: 22px;
+  max-width: 430px;
+  color: var(--muted);
 }
 
 .contact-list {
   display: grid;
   gap: 1px;
-  background: rgba(251, 250, 247, .18);
-  border: 1px solid rgba(251, 250, 247, .18);
+  border: 1px solid var(--line);
+  background: var(--line);
 }
 
 .contact-link {
   display: grid;
-  grid-template-columns: 78px minmax(0, 1fr);
+  grid-template-columns: 84px minmax(0, 1fr);
   gap: 18px;
-  padding: 18px 20px;
-  background: var(--ink);
+  padding: 20px;
+  background: var(--bg);
   align-items: baseline;
   transition: background .2s;
 }
 
 .contact-link:hover {
-  background: rgba(251, 250, 247, .08);
+  background: var(--panel-soft);
 }
 
 .contact-link span {
-  color: rgba(251, 250, 247, .48);
+  color: var(--muted);
   font-size: 11px;
+  font-weight: 700;
   letter-spacing: .2em;
   text-transform: uppercase;
 }
 
 .contact-link strong {
-  color: var(--paper);
-  font-size: 13px;
-  font-weight: 400;
+  color: var(--text-strong);
+  font-size: 14px;
+  font-weight: 500;
   overflow-wrap: anywhere;
 }
 
-.contact .button {
-  border-color: var(--paper);
-  color: var(--paper);
-  justify-self: start;
-}
-
-.contact .button:hover {
-  background: var(--paper);
-  color: var(--ink);
-}
-
-footer {
+.footer {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
-  padding: 22px clamp(22px, 6vw, 80px);
-  background: var(--ink);
-  color: rgba(251, 250, 247, .45);
-  border-top: 1px solid rgba(251, 250, 247, .12);
+  gap: 24px;
+  padding: 24px clamp(20px, 4vw, 52px);
+  color: var(--muted);
   font-size: 11px;
-  letter-spacing: .14em;
+  font-weight: 700;
+  letter-spacing: .2em;
   text-transform: uppercase;
 }
 
 @media (max-width: 900px) {
-  .nav { padding: 18px 22px; }
-  .nav-links { display: none; }
-  .hero-grid,
-  .section-head,
-  .work,
-  .about,
-  .contact-inner {
-    grid-template-columns: 1fr;
-  }
-  .work:nth-child(even) .work-media { order: 0; }
-  .work-media {
-    min-height: auto;
-    padding: 16px;
-  }
-  .work-media img {
-    max-height: none;
-  }
-  .case-grid,
-  .skills {
-    grid-template-columns: 1fr;
-  }
-  h1 {
-    font-size: clamp(54px, 9vw, 86px);
-  }
-  footer {
+  .nav {
+    align-items: flex-start;
     flex-direction: column;
+  }
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+    gap: 14px;
+    font-size: 11px;
+  }
+  .section-top,
+  .about-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+  .profile-card {
+    max-width: 480px;
+  }
+  .portfolio-track {
+    grid-auto-columns: minmax(300px, 84vw);
+  }
+  .project,
+  .project-link,
+  .project-link img {
+    min-height: 460px;
   }
 }
 
-@media (max-width: 640px) {
-  body { font-size: 13px; }
+@media (max-width: 620px) {
+  html,
+  body {
+    scroll-padding-top: 118px;
+  }
+  section {
+    scroll-margin-top: 118px;
+  }
+  .shell {
+    border: 0;
+  }
   .brand {
-    font-size: 15px;
-    letter-spacing: .2em;
+    font-size: 17px;
+    letter-spacing: .18em;
+  }
+  .nav-links {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding-bottom: 2px;
   }
   h1 {
-    font-size: clamp(48px, 15vw, 72px);
-    letter-spacing: 0;
+    font-size: clamp(56px, 18vw, 86px);
   }
-  .section-head h2,
-  .about h2,
-  .contact h2 {
-    font-size: clamp(40px, 12vw, 58px);
+  .section {
+    padding-inline: 18px;
   }
-  .work h3 {
-    font-size: clamp(36px, 11vw, 50px);
+  .section-top {
+    gap: 18px;
   }
-  .button {
-    width: 100%;
-    letter-spacing: .14em;
+  .slider-controls {
+    justify-content: flex-start;
   }
-  .pill {
-    letter-spacing: .06em;
+  .portfolio-track {
+    grid-auto-columns: minmax(270px, 88vw);
+    gap: 16px;
   }
-  .links,
-  .hero-actions {
-    width: 100%;
+  .project,
+  .project-link,
+  .project-link img {
+    min-height: 430px;
+  }
+  .project-caption {
+    padding: 22px;
   }
   .contact-link {
     grid-template-columns: 1fr;
     gap: 4px;
   }
+  .footer {
+    flex-direction: column;
+  }
 }
 </style>
 </head>
 <body>
-<nav class="nav" aria-label="Primary">
-  <a class="brand" href="#">Daichi Sasaki</a>
-  <div class="nav-links">
-    <a href="#works">Works</a>
-    <a href="#skills">Skills</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+<div class="shell">
+  <nav class="nav" aria-label="Primary navigation">
+    <a class="brand" href="#portfolio">Daichi Sasaki</a>
+    <div class="nav-links">
+      <a href="#portfolio">Portfolio</a>
+      <a href="#about">About me</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-<main>
-  <section class="hero">
-    <div class="hero-grid">
-      <div>
-        <p class="eyebrow">Web Design / Frontend / Portfolio</p>
-        <h1>Websites with atmosphere and structure.</h1>
-      </div>
-      <div class="hero-copy">
-        <p>世界観のあるビジュアルと、公開まで意識したWeb制作ポートフォリオです。</p>
-        <div class="hero-actions">
-          <a class="button primary" href="#works">View works</a>
-          <a class="button" href="https://github.com/dvichisasaki" target="_blank" rel="noopener noreferrer">GitHub</a>
+  <main>
+    <section class="section" id="portfolio">
+      <div class="section-top">
+        <div>
+          <p class="eyebrow">Web design / Frontend</p>
+          <h1>Portfolio</h1>
+        </div>
+        <div>
+          <p class="section-copy">制作したWebサイトをスライドでまとめました。画像をクリックすると、それぞれのVercel公開サイトへ移動します。</p>
+          <div class="slider-controls" aria-label="Portfolio slider controls">
+            <button class="arrow" type="button" data-slide="prev" aria-label="Previous project">←</button>
+            <button class="arrow" type="button" data-slide="next" aria-label="Next project">→</button>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="section" id="works">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">Selected works</p>
-        <h2>Three production-ready demos.</h2>
-      </div>
-      <p>公開済みの3作品。デザイン、実装、SEOの基本まで整えています。</p>
-    </div>
-
-    <div class="works">
-      <article class="work">
-        <a class="work-media" href="https://cafe-web-khaki.vercel.app/" target="_blank" rel="noopener noreferrer">
-          <img src="assets/cafe-web.jpg" alt="Sunlight & Coffee cafe website screenshot">
-        </a>
-        <div class="work-body">
-          <div>
-            <div class="work-meta">
-              <span class="pill">Cafe site</span>
-              <span class="pill">React</span>
-              <span class="pill">Vercel</span>
-              <span class="pill">SEO</span>
+      <div class="portfolio-track" id="portfolioTrack" tabindex="0" aria-label="Portfolio works">
+        <article class="project">
+          <div class="project-meta">
+            <p><strong>Sunlight & Coffee</strong>Cafe website</p>
+            <p>Vercel</p>
+          </div>
+          <a class="project-link" href="https://cafe-web-khaki.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/cafe-web.jpg" alt="Sunlight & Coffee cafe website screenshot">
+            <div class="project-caption">
+              <h3>Cafe Site</h3>
+              <p>写真と余白を活かした、静かな高級感のあるカフェサイト。</p>
+              <span class="open-label">Open site</span>
             </div>
-            <h3>Sunlight & Coffee</h3>
-            <p class="work-summary">静かな高級感を持つカフェサイト。</p>
-          </div>
-          <div class="case-grid">
-            <div class="case-item"><strong>Role</strong><p>Design / Frontend</p></div>
-            <div class="case-item"><strong>Stack</strong><p>React / Vite / Tailwind</p></div>
-            <div class="case-item"><strong>Focus</strong><p>Menu slider, SEO, accessibility</p></div>
-          </div>
-          <div class="links">
-            <a class="button primary" href="https://cafe-web-khaki.vercel.app/" target="_blank" rel="noopener noreferrer">Live site</a>
-            <a class="button" href="https://github.com/dvichisasaki/cafe-web" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </div>
-        </div>
-      </article>
+          </a>
+        </article>
 
-      <article class="work">
-        <a class="work-media" href="https://jewelry-brand-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer">
-          <img src="assets/jewelry-web.jpg" alt="W stone jewelry ecommerce website screenshot">
-        </a>
-        <div class="work-body">
-          <div>
-            <div class="work-meta">
-              <span class="pill">Jewelry EC</span>
-              <span class="pill">Branding</span>
-              <span class="pill">React</span>
-              <span class="pill">E-commerce UI</span>
+        <article class="project">
+          <div class="project-meta">
+            <p><strong>W stone</strong>Jewelry EC</p>
+            <p>Vercel</p>
+          </div>
+          <a class="project-link" href="https://jewelry-brand-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/jewelry-web.jpg" alt="W stone jewelry ecommerce website screenshot">
+            <div class="project-caption">
+              <h3>Jewelry EC</h3>
+              <p>天然石ジュエリーの空気感と商品導線を整えたブランドEC。</p>
+              <span class="open-label">Open site</span>
             </div>
-            <h3>W stone</h3>
-            <p class="work-summary">天然石ジュエリーのブランドEC。</p>
-          </div>
-          <div class="case-grid">
-            <div class="case-item"><strong>Role</strong><p>Design / Frontend</p></div>
-            <div class="case-item"><strong>Stack</strong><p>React / Vite</p></div>
-            <div class="case-item"><strong>Focus</strong><p>Product UI, cart flow, OGP</p></div>
-          </div>
-          <div class="links">
-            <a class="button primary" href="https://jewelry-brand-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer">Live site</a>
-            <a class="button" href="https://github.com/dvichisasaki/jewelry-brand-ec" target="_blank" rel="noopener noreferrer">GitHub</a>
-          </div>
-        </div>
-      </article>
+          </a>
+        </article>
 
-      <article class="work">
-        <a class="work-media" href="https://gym-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer">
-          <img src="assets/gym-web.jpg" alt="IRONFORM fitness ecommerce website screenshot">
-        </a>
-        <div class="work-body">
-          <div>
-            <div class="work-meta">
-              <span class="pill">Fitness EC</span>
-              <span class="pill">Product UI</span>
-              <span class="pill">React</span>
-              <span class="pill">Responsive</span>
+        <article class="project">
+          <div class="project-meta">
+            <p><strong>IRONFORM</strong>Fitness EC</p>
+            <p>Vercel</p>
+          </div>
+          <a class="project-link" href="https://gym-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer">
+            <img src="assets/gym-web.jpg" alt="IRONFORM fitness ecommerce website screenshot">
+            <div class="project-caption">
+              <h3>Fitness EC</h3>
+              <p>強いコントラストと商品スライダーを使ったフィットネスEC。</p>
+              <span class="open-label">Open site</span>
             </div>
-            <h3>IRONFORM</h3>
-            <p class="work-summary">フィットネス用品のECサイト。</p>
-          </div>
-          <div class="case-grid">
-            <div class="case-item"><strong>Role</strong><p>Design / Frontend</p></div>
-            <div class="case-item"><strong>Stack</strong><p>React / Vite</p></div>
-            <div class="case-item"><strong>Focus</strong><p>EC layout, product slider, SEO</p></div>
-          </div>
-          <div class="links">
-            <a class="button primary" href="https://gym-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer">Live site</a>
-            <a class="button" href="https://github.com/dvichisasaki/gym-ec" target="_blank" rel="noopener noreferrer">GitHub</a>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-top">
+        <div>
+          <p class="eyebrow">Profile</p>
+          <h2>About me</h2>
+        </div>
+      </div>
+      <div class="about-grid">
+        <div class="profile-card">
+          <img src="assets/profile-daichi.jpg" alt="Daichi Sasaki portrait">
+          <div class="profile-note">
+            <span>Daichi Sasaki</span>
+            <span>Tokyo</span>
           </div>
         </div>
-      </article>
-    </div>
-  </section>
+        <div class="about-text">
+          <p>普段からCodexやClaudeなどの生成AIを活用していて、フライヤー制作、Web制作の学習などに日常的に取り入れています。</p>
+          <p>現在コーディングの実務経験は多くありませんが、その分素直に学び、責任を持って最後までやり遂げることを大切にしています。</p>
+        </div>
+      </div>
+    </section>
 
-  <section class="section" id="skills">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow">What I can do</p>
-        <h2>Design to deploy.</h2>
+    <section class="section" id="contact">
+      <div class="contact-grid">
+        <div class="contact-title">
+          <p class="eyebrow">Contact</p>
+          <h2>Let’s work.</h2>
+          <p>制作会社・Webデザイン会社で、デザインと実装の両方に関わるポジションを目指しています。</p>
+        </div>
+        <div class="contact-list" aria-label="Contact links">
+          <a class="contact-link" href="mailto:ua212@icloud.com">
+            <span>Email</span>
+            <strong>ua212@icloud.com</strong>
+          </a>
+          <a class="contact-link" href="tel:+817094436947">
+            <span>Phone</span>
+            <strong>070-9443-6947</strong>
+          </a>
+          <a class="contact-link" href="https://github.com/dvichisasaki" target="_blank" rel="noopener noreferrer">
+            <span>GitHub</span>
+            <strong>dvichisasaki</strong>
+          </a>
+          <a class="contact-link" href="https://sasaki-portfolio-sage.vercel.app" target="_blank" rel="noopener noreferrer">
+            <span>Vercel</span>
+            <strong>sasaki-portfolio-sage.vercel.app</strong>
+          </a>
+        </div>
       </div>
-      <p>デザインから公開前の基本調整まで。</p>
-    </div>
-    <div class="skills">
-      <div class="skill"><span>01</span><h3>Visual Design</h3><p>写真、余白、タイポグラフィ。</p></div>
-      <div class="skill"><span>02</span><h3>Frontend</h3><p>HTML/CSS/JavaScript、React。</p></div>
-      <div class="skill"><span>03</span><h3>SEO Basics</h3><p>meta、OGP、JSON-LD。</p></div>
-      <div class="skill"><span>04</span><h3>Accessibility</h3><p>alt、構造、フォーカス。</p></div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <section class="section" id="about">
-    <div class="about">
-      <div>
-        <p class="eyebrow">About</p>
-        <h2>Daichi Sasaki</h2>
-      </div>
-      <div class="about-body">
-        <p>Webデザインとフロントエンド実装を学び、公開できる品質のデモサイトを制作しています。</p>
-        <p>私自身DJや写真が趣味なこともあり、見せ方の大切さを深く理解しているつもりです。</p>
-        <p>普段からCodexやClaudeなどの生成AIを活用していて、フライヤー制作、Web制作の学習などに日常的に取り入れています。</p>
-        <p>現在コーディングの実務経験は多くありませんが、その分素直に学び、責任を持って最後までやり遂げることを大切にしています。</p>
-        <p>ぜひ私の作成したサイトをご覧になっていただきたいです。</p>
-      </div>
-    </div>
-  </section>
+  <footer class="footer">
+    <span>© 2026 Daichi Sasaki</span>
+    <span>Web Design / Frontend</span>
+  </footer>
+</div>
 
-  <section class="contact" id="contact">
-    <div class="contact-inner">
-      <div>
-        <p class="eyebrow">Contact</p>
-        <h2>Ready to work.</h2>
-        <p>Junior designer / coder / frontend.</p>
-      </div>
-      <div class="contact-list" aria-label="Contact links">
-        <a class="contact-link" href="mailto:ua212@icloud.com">
-          <span>Email</span>
-          <strong>ua212@icloud.com</strong>
-        </a>
-        <a class="contact-link" href="tel:+817094436947">
-          <span>Phone</span>
-          <strong>070-9443-6947</strong>
-        </a>
-        <a class="contact-link" href="https://github.com/dvichisasaki" target="_blank" rel="noopener noreferrer">
-          <span>GitHub</span>
-          <strong>dvichisasaki</strong>
-        </a>
-        <a class="contact-link" href="https://sasaki-portfolio-sage.vercel.app" target="_blank" rel="noopener noreferrer">
-          <span>Vercel</span>
-          <strong>sasaki-portfolio-sage.vercel.app</strong>
-        </a>
-      </div>
-    </div>
-  </section>
-</main>
+<script>
+const track = document.querySelector("#portfolioTrack");
+const controls = document.querySelectorAll("[data-slide]");
 
-<footer>
-  <span>© 2026 Daichi Sasaki</span>
-  <span>Web Design / Frontend</span>
-</footer>
+controls.forEach((button) => {
+  button.addEventListener("click", () => {
+    const direction = button.dataset.slide === "next" ? 1 : -1;
+    const amount = Math.max(track.clientWidth * 0.78, 320);
+    track.scrollBy({ left: direction * amount, behavior: "smooth" });
+  });
+});
+</script>
 </body>
 </html>
