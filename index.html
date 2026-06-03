@@ -29,9 +29,11 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 24px;
+  overflow-x: hidden;
 }
 body {
   min-width: 320px;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 18% 0%, rgba(239, 184, 143, .14), transparent 34vw),
     radial-gradient(circle at 100% 8%, rgba(255, 247, 239, .06), transparent 28vw),
@@ -141,6 +143,20 @@ h2 {
   align-items: end;
   gap: 20px;
   margin-bottom: clamp(22px, 3vw, 38px);
+}
+
+.intro-mark {
+  display: grid;
+  gap: 4px;
+}
+
+.intro-mark strong {
+  color: var(--white);
+  font-size: clamp(24px, 3vw, 42px);
+  font-weight: 700;
+  letter-spacing: .18em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
 .slider-bar p {
@@ -429,6 +445,10 @@ h2 {
     flex-direction: column;
   }
 
+  .intro-mark strong {
+    font-size: clamp(22px, 8vw, 34px);
+  }
+
   .work-track {
     grid-auto-columns: 100%;
     gap: 16px;
@@ -458,6 +478,10 @@ h2 {
   <main>
     <section class="section portfolio" id="portfolio">
       <div class="slider-bar">
+        <div class="intro-mark" aria-label="Portfolio owner">
+          <p>Web design / Frontend</p>
+          <strong>Daichi Sasaki</strong>
+        </div>
         <p>Selected production demos</p>
       </div>
 
@@ -470,7 +494,7 @@ h2 {
             <div>
               <p class="eyebrow">Cafe website</p>
               <h3>Sunlight & Coffee</h3>
-              <p>写真と余白を活かした、静かな高級感のあるカフェサイト。</p>
+              <p>レスポンシブ対応、SEO調整、画像スライダー、店舗情報セクションまで整えたカフェサイト。</p>
               <div class="tags">
                 <span class="tag">React</span>
                 <span class="tag">Vercel</span>
@@ -489,7 +513,7 @@ h2 {
             <div>
               <p class="eyebrow">Jewelry EC</p>
               <h3>W stone</h3>
-              <p>天然石ジュエリーの空気感と商品導線を整えたブランドEC。</p>
+              <p>商品一覧、詳細導線、OGP設定、ブランド感のある余白設計を組み込んだジュエリーEC。</p>
               <div class="tags">
                 <span class="tag">React</span>
                 <span class="tag">Product UI</span>
@@ -508,7 +532,7 @@ h2 {
             <div>
               <p class="eyebrow">Fitness EC</p>
               <h3>IRONFORM</h3>
-              <p>強いコントラストと商品スライダーを使ったフィットネスEC。</p>
+              <p>商品訴求、スライダー、レスポンシブUI、強いコントラスト設計で構成したフィットネスEC。</p>
               <div class="tags">
                 <span class="tag">React</span>
                 <span class="tag">Slider</span>
@@ -526,7 +550,7 @@ h2 {
           <h1>Portfolio</h1>
         </div>
         <div class="portfolio-side">
-          <p class="lead">制作したWebサイトをスライドで見られるポートフォリオです。各画像をクリックすると、Vercelで公開している実際のサイトへ移動します。</p>
+          <p class="lead">制作したWebサイトをスライドで見られるポートフォリオです。デザイン、実装、公開まで自分で進めた作品を掲載しています。</p>
           <div class="portfolio-count" aria-label="Portfolio summary">
             <div class="count-item"><strong>03</strong><span>Works</span></div>
             <div class="count-item"><strong>AI</strong><span>Workflow</span></div>
