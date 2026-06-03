@@ -329,7 +329,7 @@ h1 {
 
 .contact-inner {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
   gap: 36px;
   align-items: end;
 }
@@ -342,6 +342,41 @@ h1 {
 .contact p {
   max-width: 520px;
   color: rgba(251, 250, 247, .68);
+}
+
+.contact-list {
+  display: grid;
+  gap: 1px;
+  background: rgba(251, 250, 247, .18);
+  border: 1px solid rgba(251, 250, 247, .18);
+}
+
+.contact-link {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  gap: 18px;
+  padding: 18px 20px;
+  background: var(--ink);
+  align-items: baseline;
+  transition: background .2s;
+}
+
+.contact-link:hover {
+  background: rgba(251, 250, 247, .08);
+}
+
+.contact-link span {
+  color: rgba(251, 250, 247, .48);
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.contact-link strong {
+  color: var(--paper);
+  font-size: 13px;
+  font-weight: 400;
+  overflow-wrap: anywhere;
 }
 
 .contact .button {
@@ -426,6 +461,10 @@ footer {
   .links,
   .hero-actions {
     width: 100%;
+  }
+  .contact-link {
+    grid-template-columns: 1fr;
+    gap: 4px;
   }
 }
 </style>
@@ -587,7 +626,20 @@ footer {
         <h2>Ready to work.</h2>
         <p>Junior designer / coder / frontend.</p>
       </div>
-      <a class="button" href="https://github.com/dvichisasaki" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+      <div class="contact-list" aria-label="Contact links">
+        <a class="contact-link" href="mailto:ua212@icloud.com">
+          <span>Email</span>
+          <strong>ua212@icloud.com</strong>
+        </a>
+        <a class="contact-link" href="tel:+817094436947">
+          <span>Phone</span>
+          <strong>070-9443-6947</strong>
+        </a>
+        <a class="contact-link" href="https://github.com/dvichisasaki" target="_blank" rel="noopener noreferrer">
+          <span>GitHub</span>
+          <strong>dvichisasaki</strong>
+        </a>
+      </div>
     </div>
   </section>
 </main>
