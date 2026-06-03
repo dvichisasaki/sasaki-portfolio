@@ -589,32 +589,56 @@ h2 {
 
 <script>
 const track = document.querySelector("#workTrack");
-let loopLock = false;
+const originals = Array.from(track.querySelectorAll(".work-card"));
+let scrollTimer;
 
-const loopTrack = (direction) => {
-  if (loopLock) return;
-  const maxScroll = track.scrollWidth - track.clientWidth;
-  const atStart = track.scrollLeft <= 2;
-  const atEnd = track.scrollLeft >= maxScroll - 2;
+const firstClone = originals[0].cloneNode(true);
+const lastClone = originals[originals.length - 1].cloneNode(true);
 
-  if (direction > 0 && atEnd) {
-    loopLock = true;
-    track.scrollTo({ left: 0, behavior: "smooth" });
-    window.setTimeout(() => { loopLock = false; }, 500);
+firstClone.dataset.clone = "first";
+lastClone.dataset.clone = "last";
+firstClone.setAttribute("aria-hidden", "true");
+lastClone.setAttribute("aria-hidden", "true");
+
+track.prepend(lastClone);
+track.append(firstClone);
+
+const slides = Array.from(track.querySelectorAll(".work-card"));
+const firstReal = slides[1];
+const lastReal = slides[slides.length - 2];
+const firstCloneSlide = slides[slides.length - 1];
+const lastCloneSlide = slides[0];
+
+const jumpTo = (slide) => {
+  track.style.scrollBehavior = "auto";
+  track.scrollLeft = slide.offsetLeft - track.offsetLeft;
+  requestAnimationFrame(() => {
+    track.style.scrollBehavior = "";
+  });
+};
+
+requestAnimationFrame(() => jumpTo(firstReal));
+
+const handleLoop = () => {
+  const x = track.scrollLeft;
+  const firstCloneX = firstCloneSlide.offsetLeft - track.offsetLeft;
+  const lastCloneX = lastCloneSlide.offsetLeft - track.offsetLeft;
+
+  if (x >= firstCloneX - 8) {
+    jumpTo(firstReal);
   }
 
-  if (direction < 0 && atStart) {
-    loopLock = true;
-    track.scrollTo({ left: maxScroll, behavior: "smooth" });
-    window.setTimeout(() => { loopLock = false; }, 500);
+  if (x <= lastCloneX + 8) {
+    jumpTo(lastReal);
   }
 };
 
-track.addEventListener("wheel", (event) => {
-  if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
-    loopTrack(event.deltaX);
-  }
+track.addEventListener("scroll", () => {
+  window.clearTimeout(scrollTimer);
+  scrollTimer = window.setTimeout(handleLoop, 140);
 });
+
+track.addEventListener("scrollend", handleLoop);
 </script>
 </body>
 </html>
