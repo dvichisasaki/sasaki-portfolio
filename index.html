@@ -462,6 +462,11 @@ h2 {
     grid-template-columns: 1fr;
   }
 
+  .work-info h3 {
+    font-size: clamp(36px, 12vw, 56px);
+    line-height: .94;
+  }
+
   .contact-link {
     grid-template-columns: 1fr;
     gap: 4px;
@@ -485,8 +490,8 @@ h2 {
         <p>Selected production demos</p>
       </div>
 
-      <div class="work-track" id="workTrack" tabindex="0" aria-label="Portfolio works">
-        <article class="work-card">
+      <div class="work-track" id="workTrack" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Portfolio works">
+        <article class="work-card" aria-label="Sunlight & Coffee cafe website">
           <a class="work-visual" href="https://cafe-web-khaki.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open Sunlight & Coffee website">
             <img src="assets/cafe-web.jpg?v=20260603-images" alt="Sunlight & Coffee cafe website screenshot">
           </a>
@@ -505,7 +510,7 @@ h2 {
           </div>
         </article>
 
-        <article class="work-card">
+        <article class="work-card" aria-label="W stone jewelry ecommerce website">
           <a class="work-visual" href="https://jewelry-brand-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open W stone website">
             <img src="assets/jewelry-web.jpg?v=20260603-images" alt="W stone jewelry ecommerce website screenshot">
           </a>
@@ -524,7 +529,7 @@ h2 {
           </div>
         </article>
 
-        <article class="work-card">
+        <article class="work-card" aria-label="IRONFORM fitness ecommerce website">
           <a class="work-visual" href="https://gym-ec-vercel.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Open IRONFORM website">
             <img src="assets/gym-web.jpg?v=20260603-images" alt="IRONFORM fitness ecommerce website screenshot">
           </a>
@@ -625,6 +630,12 @@ firstClone.dataset.clone = "first";
 lastClone.dataset.clone = "last";
 firstClone.setAttribute("aria-hidden", "true");
 lastClone.setAttribute("aria-hidden", "true");
+firstClone.setAttribute("inert", "");
+lastClone.setAttribute("inert", "");
+firstClone.inert = true;
+lastClone.inert = true;
+firstClone.querySelectorAll("a, button").forEach((element) => element.tabIndex = -1);
+lastClone.querySelectorAll("a, button").forEach((element) => element.tabIndex = -1);
 
 track.prepend(lastClone);
 track.append(firstClone);
