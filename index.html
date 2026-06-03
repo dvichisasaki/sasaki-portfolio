@@ -95,7 +95,8 @@ a { color: inherit; text-decoration: none; }
 h1, h2, h3 {
   font-family: "Cormorant Garamond", serif;
   font-weight: 300;
-  line-height: .95;
+  line-height: 1;
+  text-wrap: balance;
 }
 
 h1 {
@@ -106,7 +107,7 @@ h1 {
 }
 
 .hero-copy {
-  max-width: 520px;
+  max-width: 640px;
   color: var(--muted);
 }
 
@@ -130,6 +131,7 @@ h1 {
   font-size: 11px;
   letter-spacing: .22em;
   text-transform: uppercase;
+  white-space: nowrap;
   transition: background .2s, color .2s, border-color .2s;
 }
 
@@ -159,7 +161,7 @@ h1 {
 
 .section-head p {
   color: var(--muted);
-  max-width: 520px;
+  max-width: 580px;
 }
 
 .works {
@@ -171,24 +173,32 @@ h1 {
 
 .work {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(340px, .95fr);
+  grid-template-columns: minmax(420px, .95fr) minmax(0, 1.05fr);
   background: var(--paper);
 }
 
 .work:nth-child(even) .work-media { order: 2; }
 
 .work-media {
-  min-height: 420px;
-  background: var(--warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 480px;
+  padding: clamp(18px, 3vw, 36px);
+  background:
+    linear-gradient(135deg, rgba(21, 21, 19, .04), transparent 48%),
+    var(--warm);
   overflow: hidden;
 }
 
 .work-media img {
   width: 100%;
-  height: 100%;
-  min-height: 420px;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
+  max-height: 620px;
+  object-fit: contain;
+  object-position: center;
+  border: 1px solid rgba(21, 21, 19, .1);
+  box-shadow: 0 24px 70px rgba(21, 21, 19, .14);
   filter: saturate(.88) contrast(.98);
 }
 
@@ -212,8 +222,9 @@ h1 {
   padding: 5px 10px;
   color: var(--muted);
   font-size: 10px;
-  letter-spacing: .13em;
+  letter-spacing: .08em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .work h3 {
@@ -228,7 +239,7 @@ h1 {
 
 .case-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(190px, 1fr));
   gap: 22px;
 }
 
@@ -243,6 +254,7 @@ h1 {
   font-size: 11px;
   letter-spacing: .24em;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .case-item p {
@@ -279,7 +291,7 @@ h1 {
 .skill h3 {
   margin: 26px 0 14px;
   font-size: 30px;
-  line-height: 1.05;
+  line-height: 1.08;
 }
 
 .skill p {
@@ -331,6 +343,7 @@ h1 {
 .contact .button {
   border-color: var(--paper);
   color: var(--paper);
+  justify-self: start;
 }
 
 .contact .button:hover {
@@ -362,14 +375,53 @@ footer {
     grid-template-columns: 1fr;
   }
   .work:nth-child(even) .work-media { order: 0; }
-  .work-media,
-  .work-media img { min-height: 300px; }
+  .work-media {
+    min-height: auto;
+    padding: 16px;
+  }
+  .work-media img {
+    max-height: none;
+  }
   .case-grid,
   .skills {
     grid-template-columns: 1fr;
   }
+  h1 {
+    font-size: clamp(54px, 9vw, 86px);
+  }
   footer {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 13px; }
+  .brand {
+    font-size: 15px;
+    letter-spacing: .2em;
+  }
+  h1 {
+    font-size: clamp(48px, 15vw, 72px);
+    letter-spacing: 0;
+  }
+  .section-head h2,
+  .about h2,
+  .contact h2 {
+    font-size: clamp(40px, 12vw, 58px);
+  }
+  .work h3 {
+    font-size: clamp(36px, 11vw, 50px);
+  }
+  .button {
+    width: 100%;
+    letter-spacing: .14em;
+  }
+  .pill {
+    letter-spacing: .06em;
+  }
+  .links,
+  .hero-actions {
+    width: 100%;
   }
 }
 </style>
