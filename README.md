@@ -19,7 +19,7 @@
 ## Works
 
 - Sunlight & Coffee: https://cafe-web-khaki.vercel.app/
-- W stone: https://jewelry-brand-ec-vercel.vercel.app/
+- THREADRIFT: https://dvichisasaki.github.io/jewelry-brand-ec/
 - IRONFORM: https://gym-ec-vercel.vercel.app/
 
 ## Live
